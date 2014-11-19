@@ -1,0 +1,14 @@
+<zombie>
+	<spriteinfo>
+		<file>data/monster.png</file>
+		<xbegin>0</xbegin>
+		<ybegin>0</ybegin>
+		<xsize>31</xsize>
+		<ysize>31</ysize>
+	</spriteinfo>
+	<attributes>
+		<agrorange>400</agrorange>
+		<life>10</life>
+		<attackrange>300</attackrange>
+	</attributes>
+</zombie>

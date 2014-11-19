@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="Ysthme" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/Ysthme" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add directory="C:/Program Files (x86)/CodeBlocks/MinGW/include/SFML" />
+				</Compiler>
+				<Linker>
+					<Add directory="C:/Program Files (x86)/CodeBlocks/MinGW/lib/SFML" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/Ysthme" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-DSFML_DYNAMIC" />
+		</Compiler>
+		<Linker>
+			<Add option="-lsfml-graphics" />
+			<Add option="-lsfml-window" />
+			<Add option="-lsfml-system" />
+		</Linker>
+		<Unit filename="interface/MonsterInterface.cpp" />
+		<Unit filename="interface/MonsterInterface.h" />
+		<Unit filename="main.cpp" />
+		<Unit filename="manager/EnvironementManager.cpp" />
+		<Unit filename="manager/EnvironementManager.h" />
+		<Unit filename="manager/ItemManager.cpp" />
+		<Unit filename="manager/ItemManager.h" />
+		<Unit filename="manager/MainManager.cpp" />
+		<Unit filename="manager/MainManager.h" />
+		<Unit filename="manager/MonsterManager.cpp" />
+		<Unit filename="manager/MonsterManager.h" />
+		<Unit filename="manager/PlayerManager.cpp" />
+		<Unit filename="manager/PlayerManager.h" />
+		<Unit filename="manager/SpellManager.cpp" />
+		<Unit filename="manager/SpellManager.h" />
+		<Unit filename="manager/UIManager.cpp" />
+		<Unit filename="manager/UIManager.h" />
+		<Unit filename="misc/Clock.cpp" />
+		<Unit filename="misc/Clock.h" />
+		<Unit filename="misc/XMLparser.cpp" />
+		<Unit filename="misc/XMLparser.h" />
+		<Unit filename="misc/rapidxml/rapidxml.hpp" />
+		<Unit filename="misc/rapidxml/rapidxml_iterators.hpp" />
+		<Unit filename="misc/rapidxml/rapidxml_print.hpp" />
+		<Unit filename="misc/rapidxml/rapidxml_utils.hpp" />
+		<Unit filename="misc/util.h" />
+		<Unit filename="resource/Character.cpp" />
+		<Unit filename="resource/Character.h" />
+		<Unit filename="resource/Data.cpp" />
+		<Unit filename="resource/Data.h" />
+		<Unit filename="resource/Ground.cpp" />
+		<Unit filename="resource/Ground.h" />
+		<Unit filename="resource/Item.cpp" />
+		<Unit filename="resource/Item.h" />
+		<Unit filename="resource/Monster.cpp" />
+		<Unit filename="resource/Monster.h" />
+		<Unit filename="resource/Player.cpp" />
+		<Unit filename="resource/Player.h" />
+		<Unit filename="resource/Spell.cpp" />
+		<Unit filename="resource/Spell.h" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
