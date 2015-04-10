@@ -11,7 +11,7 @@ Data::~Data()
 void Data::load(std::string xmlResourceFile)
 {
     sf::Image img;
-    if (!img.loadFromFile("data/Wizard.png")){}
+    if (!img.loadFromFile("data/orks.png")){}
     dataResourceMap["zombie"] = img;
     if (!img.loadFromFile("data/Wizard.png")){}
     dataResourceMap["player"] = img;
