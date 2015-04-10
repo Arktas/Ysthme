@@ -3,6 +3,7 @@
 
 #include "../misc/util.h"
 #include "../manager/ItemManager.h"
+#include "../parser/MonsterParser.h"
 #include "Character.h"
 class Character;
 
@@ -10,7 +11,6 @@ class Monster : public Character
 {
     private:
         float AgroRadius;
-        int Xsize,Ysize;
         bool agro;
         int attackRange;
         bool canAttack;
@@ -19,6 +19,7 @@ class Monster : public Character
         Clock *clock;
         bool moove;
         ItemManager* itemManager;
+        MonsterParser* monsterParser;
     public:
         //constructor and destructor
         Monster(ItemManager* itemManager,Data* dataContainer,std::string textureFile,int XTextureBegin,int YTextureBegin,int XSpriteSize,int YSpriteSize,int x,int y,float agroradius,int life,int attackRange,int nbSprite,int nbSpriteAnim,float* ORIGIN_DIFF_X_DYNAMIC,float* ORIGIN_DIFF_Y_DYNAMIC);
@@ -40,7 +41,6 @@ class Monster : public Character
         void idle(){indexAnim = 6;};
         void cast(){indexAnim = 9;};
         //getters and setters
-        sf::Sprite getMonsterSprite(){return spriteTab[(spriteIndex*nbSpriteAnim)+indexAnim];};
         int getMonsterRotation(){return rotation;/*spriteTab[spriteIndex].getRotation();*/};
         float getMonsterX(){return (*ORIGIN_DIFF_X_DYNAMIC)+X;};
         float getMonsterY(){return (*ORIGIN_DIFF_Y_DYNAMIC)+Y;};

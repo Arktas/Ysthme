@@ -1,10 +1,11 @@
 #include "MonsterManager.h"
 
-MonsterManager::MonsterManager(Player* player, std::list<Monster*> *monsterlist,float* ORIGIN_DIFF_X_DYNAMIC,float* ORIGIN_DIFF_Y_DYNAMIC)
+MonsterManager::MonsterManager(Data* dataContainer,Player* player, std::list<Monster*> *monsterlist,float* ORIGIN_DIFF_X_DYNAMIC,float* ORIGIN_DIFF_Y_DYNAMIC)
 {
     this->player = player;
     this->monsterList = monsterlist;
     this->monsterInterface = new MonsterInterface();
+    this->monsterPrinter = new MonsterPrinter(dataContainer,"zombie",0,0,96,110,8,10);
     this->ORIGIN_DIFF_X_DYNAMIC=ORIGIN_DIFF_X_DYNAMIC;
     this->ORIGIN_DIFF_Y_DYNAMIC=ORIGIN_DIFF_Y_DYNAMIC;
 }
@@ -22,14 +23,15 @@ void MonsterManager::checkEvent(sf::Event& event,sf::RenderWindow* window)
 
         for(it=monsterList->begin();it!=monsterList->end();it++)
         {
-            if((*it)->getCanAttack())
-            {
-                (*it)->doRotation(rotation(player->getPlayerX(),player->getPlayerY(),(*it)->getMonsterX(),(*it)->getMonsterY()));
-                (*it)->cast();
-            }
+
             // std::cout << (*it)->getMonsterRealX() << " M " << (*it)->getMonsterRealY() << std::endl;
             if((*it)->getMonsterRealX()>(-(player->getPlayerRealX()+LIFE_MANAGEMENT_RANGE)) && (*it)->getMonsterRealX()<(-(player->getPlayerRealX()-LIFE_MANAGEMENT_RANGE)) && (*it)->getMonsterRealY()>(-(player->getPlayerRealY()+LIFE_MANAGEMENT_RANGE)) && (*it)->getMonsterRealY()<(-(player->getPlayerRealY()-LIFE_MANAGEMENT_RANGE)))
             {
+                if((*it)->getCanAttack())
+                {
+                    (*it)->doRotation(rotation(player->getPlayerX(),player->getPlayerY(),(*it)->getMonsterX(),(*it)->getMonsterY()));
+                    (*it)->cast();
+                }
                 (*it)->agroChange(player->getPlayerX(),player->getPlayerY());
                 if((*it)->getAgro())
                 {
@@ -42,15 +44,15 @@ void MonsterManager::checkEvent(sf::Event& event,sf::RenderWindow* window)
                     }
                     else
                     {
-                       (*it)->idle();
+                       //(*it)->idle();
                     }
                 }
 
                 if((*it)->alive())
                 {
                     (*it)->setMonsterPosition();
-                    window->draw(monsterInterface->display((*it)->getLife(),(*it)->getMonsterX()-5,((*it)->getMonsterY()-70)));
-                    window->draw((*it)->getMonsterSprite());
+                    window->draw(monsterInterface->display((*it)->getLife(),(*it)->getMonsterX()-20,((*it)->getMonsterY()-70)));
+                    window->draw(monsterPrinter->getMonsterSprite((*it)));
                 }
                 else
                 {

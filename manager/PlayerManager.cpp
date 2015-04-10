@@ -1,6 +1,6 @@
 #include "PlayerManager.h"
 
-PlayerManager::PlayerManager(Player* player,bool* left,bool* right,bool* top,bool* down,bool* dirTop,bool* dirDown,bool* dirRight,bool* dirLeft,bool* mousePressed,bool* spell,float* ORIGIN_DIFF_X_DYNAMIC,float* ORIGIN_DIFF_Y_DYNAMIC)
+PlayerManager::PlayerManager(Data* dataContainer,Player* player,bool* left,bool* right,bool* top,bool* down,bool* dirTop,bool* dirDown,bool* dirRight,bool* dirLeft,bool* mousePressed,bool* spell,float* ORIGIN_DIFF_X_DYNAMIC,float* ORIGIN_DIFF_Y_DYNAMIC)
 {
     this->left = left;
     this->right = right;
@@ -13,8 +13,10 @@ PlayerManager::PlayerManager(Player* player,bool* left,bool* right,bool* top,boo
     this->mousePressed = mousePressed;
     this->spell = spell;
     this->player = player;
+    this->playerInterface = new PlayerInterface();
     this->ORIGIN_DIFF_X_DYNAMIC = ORIGIN_DIFF_X_DYNAMIC;
     this->ORIGIN_DIFF_Y_DYNAMIC = ORIGIN_DIFF_Y_DYNAMIC;
+    this->playerPrinter = new PlayerPrinter(player,dataContainer,"player",0,0,96,110,8,10);
 }
 PlayerManager::~PlayerManager()
 {
@@ -151,7 +153,8 @@ void PlayerManager::checkEvent(sf::Event& event,sf::RenderWindow* window)
     {
         player->cast();
     }
-    window->draw(player->getPlayerSprite());
+    window->draw(playerInterface->display(player->getLife(),20,YMAX-30));
+    window->draw(playerPrinter->getPlayerSprite(player));
 }
 
 int PlayerManager::rotation(int mX,int mY,int pX,int pY)

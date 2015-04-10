@@ -5,8 +5,6 @@
 class Spell
 {
     private:
-        sf::Texture spellTexture;
-        sf::Sprite* spriteTab;
         int spriteIndex;
         int maxIndex;
         float moveX;
@@ -19,6 +17,7 @@ class Spell
         float* ORIGIN_DIFF_X_DYNAMIC;
         float* ORIGIN_DIFF_Y_DYNAMIC;
         int range;
+        int rotation;
 
     public:
         //constructor and destructor
@@ -29,7 +28,6 @@ class Spell
         void moving();
 
         //getters and setters
-        sf::Sprite getSpellSprite(){return spriteTab[spriteIndex];};
         float getSpellX(){return X+(*ORIGIN_DIFF_X_DYNAMIC);};
         float getSpellY(){return Y+(*ORIGIN_DIFF_Y_DYNAMIC);};
         float getSpellRealX(){return X;};
@@ -37,6 +35,8 @@ class Spell
         int getDamage(){return damage;};
         int getSource(){return source;};
         int getRange(){return range;};
+        int getSpriteIndex(){return spriteIndex;};
+        int getRotation(){return rotation;};
 };
 
 #endif

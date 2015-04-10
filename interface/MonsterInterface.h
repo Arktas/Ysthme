@@ -2,6 +2,7 @@
 #define MONSTER_INTERFACE
 
 #include "../misc/util.h"
+#include "../resource/Monster.h"
 
 class MonsterInterface
 {

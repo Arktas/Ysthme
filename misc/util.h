@@ -15,7 +15,6 @@
 
 
 #include "Clock.h"
-#include "XMLparser.h"
 
 #include "../resource/Data.h"
 
@@ -24,13 +23,13 @@
 #define PLAYER_SPELL 0
 #define MONSTER_SPELL 1
 
-#define XMAX 1366
-#define YMAX 768
+#define XMAX 1100
+#define YMAX 650
 #define ORIGIN_DIFF_X round(XMAX/2)
 #define ORIGIN_DIFF_Y round(YMAX/2)
 //Ground states
-#define MAP_SIZE_X 20
-#define MAP_SIZE_Y 20
+#define MAP_SIZE_X 30
+#define MAP_SIZE_Y 30
 #define GRASS 0
 
 //biosphere parameters

@@ -1,0 +1,20 @@
+<zombie>
+ <spriteinfo>
+  <file>data/monster.png</file>
+  <xbegin>0</xbegin>
+  <ybegin>0</ybegin>
+  <xsize>96</xsize>
+  <ysize>110</ysize>
+  <xorigin>45</xorigin>
+  <yorigin>70</yorigin>
+  <rotation>0</rotation>
+ </spriteinfo>
+ <attributes>
+  <life>20</life>
+ </attributes>
+ <attack>
+  <agrorange>400</agrorange>
+  <attackrange>300</attackrange>
+  <attackcooldown>1000</attackcooldown>
+ </attack>
+</zombie>

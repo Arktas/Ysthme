@@ -43,6 +43,8 @@
 		</Linker>
 		<Unit filename="interface/MonsterInterface.cpp" />
 		<Unit filename="interface/MonsterInterface.h" />
+		<Unit filename="interface/PlayerInterface.cpp" />
+		<Unit filename="interface/PlayerInterface.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="manager/EnvironementManager.cpp" />
 		<Unit filename="manager/EnvironementManager.h" />
@@ -60,19 +62,30 @@
 		<Unit filename="manager/UIManager.h" />
 		<Unit filename="misc/Clock.cpp" />
 		<Unit filename="misc/Clock.h" />
-		<Unit filename="misc/XMLparser.cpp" />
-		<Unit filename="misc/XMLparser.h" />
 		<Unit filename="misc/rapidxml/rapidxml.hpp" />
 		<Unit filename="misc/rapidxml/rapidxml_iterators.hpp" />
 		<Unit filename="misc/rapidxml/rapidxml_print.hpp" />
 		<Unit filename="misc/rapidxml/rapidxml_utils.hpp" />
 		<Unit filename="misc/util.h" />
+		<Unit filename="misc/variables.h" />
+		<Unit filename="parser/MonsterParser.cpp" />
+		<Unit filename="parser/MonsterParser.h" />
+		<Unit filename="printer/ItemPrinter.cpp" />
+		<Unit filename="printer/ItemPrinter.h" />
+		<Unit filename="printer/MonsterPrinter.cpp" />
+		<Unit filename="printer/MonsterPrinter.h" />
+		<Unit filename="printer/PlayerPrinter.cpp" />
+		<Unit filename="printer/PlayerPrinter.h" />
+		<Unit filename="printer/SpellPrinter.cpp" />
+		<Unit filename="printer/SpellPrinter.h" />
 		<Unit filename="resource/Character.cpp" />
 		<Unit filename="resource/Character.h" />
 		<Unit filename="resource/Data.cpp" />
 		<Unit filename="resource/Data.h" />
 		<Unit filename="resource/Ground.cpp" />
 		<Unit filename="resource/Ground.h" />
+		<Unit filename="resource/Inventory.cpp" />
+		<Unit filename="resource/Inventory.h" />
 		<Unit filename="resource/Item.cpp" />
 		<Unit filename="resource/Item.h" />
 		<Unit filename="resource/Monster.cpp" />
@@ -81,6 +94,9 @@
 		<Unit filename="resource/Player.h" />
 		<Unit filename="resource/Spell.cpp" />
 		<Unit filename="resource/Spell.h" />
+		<Unit filename="ressources.rc">
+			<Option compilerVar="WINDRES" />
+		</Unit>
 		<Extensions>
 			<code_completion />
 			<envvars />

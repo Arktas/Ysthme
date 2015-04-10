@@ -5,6 +5,7 @@
 #include "../resource/Spell.h"
 #include "../resource/Player.h"
 #include "../resource/Monster.h"
+#include "../printer/SpellPrinter.h"
 
 class SpellManager
 {
@@ -16,6 +17,7 @@ class SpellManager
         Player* player;
         std::list<Monster*> *monsterList;
         Data *dataContainer;
+        SpellPrinter* spellPrinter;
     public:
         SpellManager(Player* player,std::list<Monster*> *monsterlist,bool* spell,Data *dataContainer,float* ORIGIN_DIFF_X_DYNAMIC,float* ORIGIN_DIFF_Y_DYNAMIC);
         ~SpellManager();

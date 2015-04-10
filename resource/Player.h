@@ -5,17 +5,11 @@
 #include "Character.h"
 #include "Item.h"
 
-typedef struct item_inventory{
-Item* item;
-unsigned char item_stack;
-}item_inventory;
-
 class Character;
 
 class Player : public Character
 {
     private :
-        std::map<std::string,item_inventory> inventory;
         int state;
     public :
         //constructor and destructor
@@ -33,11 +27,10 @@ class Player : public Character
         //context functions
         bool hit(int x,int y,int damage);
         bool alive();
-
+        void cast();
 
         //getters and setters
-        sf::Sprite getPlayerSprite(){return spriteTab[(spriteIndex*nbSpriteAnim)+indexAnim];};
-        void cast();
+
         int getPlayerRotation(){return rotation;/*spriteTab[state].getRotation()*/};
         float getPlayerX(){return (*ORIGIN_DIFF_X_DYNAMIC)-X;};
         float getPlayerY(){return (*ORIGIN_DIFF_Y_DYNAMIC)-Y;};
@@ -46,7 +39,7 @@ class Player : public Character
         int getLife(){return life;};
         void setDirection(int direction){spriteIndex = direction;};
         void setState(int newState){state = newState;};
-        void addItemToInventory(Item* item);
+
 };
 
 #endif

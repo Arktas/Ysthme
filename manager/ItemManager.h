@@ -4,6 +4,8 @@
 #include "../misc/util.h"
 #include "../resource/Item.h"
 #include "../resource/Player.h"
+#include "../resource/Inventory.h"
+#include "../printer/ItemPrinter.h"
 
 class ItemManager
 {
@@ -11,12 +13,12 @@ class ItemManager
         float* ORIGIN_DIFF_X_DYNAMIC;
         float* ORIGIN_DIFF_Y_DYNAMIC;
         Player *player;
-        std::string nameTab[3];
-        sf::Texture itemTexture;
-        std::map<std::string,sf::Sprite> itemMap;
+        Inventory *inventory;
         std::list<Item*> itemList;
+        ItemPrinter *itemPrinter;
+
     public:
-        ItemManager(float* ORIGIN_DIFF_X_DYNAMIC,float* ORIGIN_DIFF_Y_DYNAMIC,Data* dataContainer,Player* player);
+        ItemManager(float* ORIGIN_DIFF_X_DYNAMIC,float* ORIGIN_DIFF_Y_DYNAMIC,Data* dataContainer,Player* player,Inventory* inventory);
         ~ItemManager();
         void checkEvent(sf::Event& event,sf::RenderWindow* window);
         void addItem(std::string itemName,float x,float y);

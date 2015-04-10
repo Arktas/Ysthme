@@ -8,6 +8,7 @@ SpellManager::SpellManager(Player* player,std::list<Monster*> *monsterlist,bool*
     this->dataContainer = dataContainer;
     this->ORIGIN_DIFF_X_DYNAMIC = ORIGIN_DIFF_X_DYNAMIC;
     this->ORIGIN_DIFF_Y_DYNAMIC = ORIGIN_DIFF_Y_DYNAMIC;
+    this->spellPrinter = new SpellPrinter(dataContainer,"fireball",0,0,40,48,8);
 }
 SpellManager::~SpellManager()
 {
@@ -93,7 +94,13 @@ void SpellManager::CheckEvent(sf::Event& event,sf::RenderWindow* window)
                 spellList.erase(iterase);
             }
             else
-                window->draw((*it)->getSpellSprite());
+            {
+                if((*it)!=NULL)
+                {
+                    window->draw(spellPrinter->getSpellSprite((*it)));
+                }
+            }
+
         }
     }
 }

@@ -4,6 +4,10 @@
 #include "../misc/util.h"
 #include "../resource/Player.h"
 #include "../resource/Monster.h"
+#include "../printer/PlayerPrinter.h"
+#include "../interface/PlayerInterface.h"
+#include "../resource/Data.h"
+
 class PlayerManager
 {
     private:
@@ -21,8 +25,10 @@ class PlayerManager
         bool* spell;
         sf::Vector2i mousePosition;
         Player* player;
+        PlayerPrinter* playerPrinter;
+        PlayerInterface *playerInterface;
     public:
-        PlayerManager(Player* player,bool* left,bool* right,bool* top,bool* down,bool* dirTop,bool* dirDown,bool* dirRight,bool* dirLeft,bool* mousePressed,bool* spell,float* ORIGIN_DIFF_X_DYNAMIC,float* ORIGIN_DIFF_Y_DYNAMIC);
+        PlayerManager(Data* dataContainer,Player* player,bool* left,bool* right,bool* top,bool* down,bool* dirTop,bool* dirDown,bool* dirRight,bool* dirLeft,bool* mousePressed,bool* spell,float* ORIGIN_DIFF_X_DYNAMIC,float* ORIGIN_DIFF_Y_DYNAMIC);
         ~PlayerManager();
         void checkEvent(sf::Event& event,sf::RenderWindow* window);
         int rotation(int mX,int mY,int pX,int pY);

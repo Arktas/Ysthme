@@ -1,22 +1,13 @@
 #include "ItemManager.h"
 
-ItemManager::ItemManager(float* ORIGIN_DIFF_X_DYNAMIC,float* ORIGIN_DIFF_Y_DYNAMIC,Data* dataContainer,Player* player)
+ItemManager::ItemManager(float* ORIGIN_DIFF_X_DYNAMIC,float* ORIGIN_DIFF_Y_DYNAMIC,Data* dataContainer,Player* player,Inventory* inventory)
 {
     this->player = player;
+    this->inventory = inventory;
     this->ORIGIN_DIFF_X_DYNAMIC = ORIGIN_DIFF_X_DYNAMIC;
     this->ORIGIN_DIFF_Y_DYNAMIC = ORIGIN_DIFF_Y_DYNAMIC;
-    nameTab[0] = "potion_vie";
-    nameTab[1] = "potion_mana";
-    nameTab[2] = "bourse_or";
-    if (!itemTexture.loadFromImage(dataContainer->getImage("item"),sf::IntRect(0,0,384,384))){}
-    for(int i=0;i<3;i++)
-    {
-        sf::Sprite temp;
-        temp.setTexture(itemTexture);
-        temp.setTextureRect(sf::IntRect((0+i*64),0,64,64));
-        temp.setOrigin(32,32);
-        itemMap[nameTab[i].c_str()] = temp;
-    }
+    this->itemPrinter = new ItemPrinter(dataContainer,"item",0,0,64,64,3);
+
 }
 
 ItemManager::~ItemManager()
@@ -36,12 +27,12 @@ void ItemManager::checkEvent(sf::Event& event,sf::RenderWindow* window)
         {
           //  if()
            // {
-                player->addItemToInventory(itemTemp);
+                inventory->addItemToInventory(itemTemp);
            // }
         }
         else
         {
-           window->draw(itemTemp->display(ORIGIN_DIFF_X_DYNAMIC,ORIGIN_DIFF_Y_DYNAMIC));
+           window->draw(itemPrinter->getItemSprite(itemTemp));
            itemListTemp.push_front(itemTemp);
         }
         itemList.pop_back();
@@ -55,5 +46,5 @@ void ItemManager::checkEvent(sf::Event& event,sf::RenderWindow* window)
 
 void ItemManager::addItem(std::string itemName,float x,float y)
 {
-    itemList.push_front(new Item(&(itemMap[itemName.c_str()]),x,y,itemName));
+    itemList.push_front(new Item(x,y,itemName,ORIGIN_DIFF_X_DYNAMIC,ORIGIN_DIFF_Y_DYNAMIC));
 }

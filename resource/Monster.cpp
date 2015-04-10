@@ -2,24 +2,24 @@
 
 Monster::Monster(ItemManager* itemManager, Data* dataContainer,std::string textureFile,int XTextureBegin,int YTextureBegin,int XSpriteSize,int YSpriteSize,int x,int y,float agroradius,int life,int attackRange,int nbSprite,int nbSpriteAnim,float* ORIGIN_DIFF_X_DYNAMIC,float* ORIGIN_DIFF_Y_DYNAMIC) : Character::Character(dataContainer,textureFile,XTextureBegin,YTextureBegin,XSpriteSize,YSpriteSize,x,y,life,nbSprite,nbSpriteAnim,ORIGIN_DIFF_X_DYNAMIC,ORIGIN_DIFF_Y_DYNAMIC)
 {
-    Xsize = XSpriteSize;
-    Ysize = YSpriteSize;
-    this->attackRange = attackRange;
+    this->monsterParser = new MonsterParser();
+    this->monsterParser->parse("data/properties/zombie.xml");
+    //Chargement des paramètres
+    std::cout << "Chargements des parametres" << std::endl;
+    this->life = monsterParser->getLife();
+    this-> AgroRadius = monsterParser->getAgroRange();
+    ///////////////////////////
+    this->attackRange = monsterParser->getAttackRange();
     this->canAttack = false;
-    this->attackCooldown = 1000;
+    this->attackCooldown = monsterParser->getAttackCooldown();
     this->clock = new Clock();
     this->clock->start();
-    this-> AgroRadius = agroradius;
     this->moove = false;
     this->get_hit = false;
     indexAnimWalk = 0;
     indexAnim = 6;
     delay = 0;
     spriteIndex = DOWN;
-    for(int i=0;i<nbSpriteAnim*nbSprite;i++)
-    {
-        spriteTab[i].setPosition(sf::Vector2f((*ORIGIN_DIFF_X_DYNAMIC)+X,(*ORIGIN_DIFF_Y_DYNAMIC)+Y));
-    }
     this->itemManager = itemManager;
 }
 
@@ -48,7 +48,6 @@ void Monster::doRotation(int angle)
 
 void Monster::changeTexture(int XTextureBegin,int YTextureBegin,int XSpriteSize,int YSpriteSize)
 {
-    spriteTab[0].setTextureRect(sf::IntRect(XTextureBegin, YTextureBegin, XSpriteSize, YSpriteSize));
 }
 
 void Monster::moving(float x,float y)
@@ -60,10 +59,6 @@ void Monster::moving(float x,float y)
     Ymin = Y;
     Xmax =X+Xsize;
     Ymax =Y+Ysize;
-     for(int i=0;i<nbSpriteAnim*nbSprite;i++)
-    {
-        spriteTab[i].setPosition(sf::Vector2f((*ORIGIN_DIFF_X_DYNAMIC)+X,(*ORIGIN_DIFF_Y_DYNAMIC)+Y));
-    }
     delay++;
     if(delay>5)
     {
@@ -78,7 +73,6 @@ void Monster::moving(float x,float y)
 
 Monster::~Monster()
 {
-    free(spriteTab);
 }
 
 bool Monster::hit(int x,int y,int damage)
@@ -136,6 +130,7 @@ void Monster::agroChange(int pX,int pY)
     }
     else
     {
+        idle();
         moove = false;
         agro = false;
     }
@@ -143,9 +138,5 @@ void Monster::agroChange(int pX,int pY)
 
 void Monster::setMonsterPosition()
 {
-    for(int i=0;i<nbSpriteAnim*nbSprite;i++)
-    {
-        spriteTab[i].setPosition(sf::Vector2f((*ORIGIN_DIFF_X_DYNAMIC)+X,(*ORIGIN_DIFF_Y_DYNAMIC)+Y));
-    }
 }
 

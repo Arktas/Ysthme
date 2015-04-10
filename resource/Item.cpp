@@ -1,12 +1,12 @@
 #include "Item.h"
 
-Item::Item(sf::Sprite *itemData,float x,float y,std::string name)
+Item::Item(float x,float y,std::string name,float* ORIGIN_DIFF_X_DYNAMIC,float* ORIGIN_DIFF_Y_DYNAMIC)
 {
+    this->ORIGIN_DIFF_X_DYNAMIC = ORIGIN_DIFF_X_DYNAMIC;
+    this->ORIGIN_DIFF_Y_DYNAMIC = ORIGIN_DIFF_Y_DYNAMIC;
     this->name = name;
-    this->itemData = itemData;
     this->X = x;
     this->Y = y;
-    itemData->setPosition(sf::Vector2f(X,Y));
 }
 
 Item::~Item()
