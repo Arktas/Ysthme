@@ -25,7 +25,8 @@ class Player : public Character
         void changeTexture(int XTextureBegin,int YTextureBegin,int XSpriteSize,int YSpriteSize);
 
         //context functions
-        bool hit(int x,int y,int damage);
+        void hit(int damage);
+        bool hitbox(int Xmin_test,int Xmax_test,int Ymin_test,int Ymax_test);
         bool alive();
         void cast();
 

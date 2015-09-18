@@ -12,44 +12,39 @@
 class MainManager
 {
     private:
-        //move flag
-            bool left;
-            bool right;
-            bool top;
-            bool down;
-            bool dirTop;
-            bool dirDown;
-            bool dirRight;
-            bool dirLeft;
-            bool spell;
-            bool mousePressed;
 
+        _MANAGER_Flags flags;
 
-            float ORIGIN_DIFF_X_DYNAMIC;
-            float ORIGIN_DIFF_Y_DYNAMIC;
+        float ORIGIN_DIFF_X_DYNAMIC;
+        float ORIGIN_DIFF_Y_DYNAMIC;
 
-            std::list<Spell*> spellList;
-            std::list<Monster*> monsterList;
+        std::list<Spell*> spellList;
+        std::list<Monster*> monsterList;
+        std::list<Item*> itemList;
 
-            sf::RenderWindow* window;
-            sf::Event event;
+        sf::RenderWindow* window;
+        sf::Event event;
 
-            sf::Vector2i mousePosition;
-            Player* player;
-            float X,Y;
-            Monster* monster;
+        sf::Vector2i mousePosition;
+        Player* player;
+        float X,Y;
+        Monster* monster;
 
-            PlayerManager* playerManager;
-            MonsterManager* monsterManager;
-            SpellManager* spellManager;
-            UIManager* uiManager;
-            EnvironementManager* environementManager;
-            ItemManager* itemManager;
+        PlayerManager* playerManager;
+        MonsterManager* monsterManager;
+        SpellManager* spellManager;
+        UIManager* uiManager;
+        EnvironementManager* environementManager;
+        ItemManager* itemManager;
 
-            Data *dataContainer;
-            Clock *clock;
+        Data *dataContainer;
+        Clock *clock;
 
-            MonsterInterface* monsterInterface;
+        MonsterInterface* monsterInterface;
+
+        Hitbox* _INST_hitbox;
+
+        Inventory* inventory;
 
 
     public:

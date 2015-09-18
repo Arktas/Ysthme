@@ -41,7 +41,6 @@ int MonsterParser::getAgroRange()
     rapidxml::xml_node<> *pRoot = doc.first_node();
     rapidxml::xml_node<> *pNode = pRoot->first_node("attack");
     pNode = pNode->first_node("agrorange");
-    std::cout << pNode->value() << std::endl;
     return atoi(pNode->value());
 }
 
@@ -50,7 +49,6 @@ int MonsterParser::getAttackRange()
     rapidxml::xml_node<> *pRoot = doc.first_node();
     rapidxml::xml_node<> *pNode = pRoot->first_node("attack");
     pNode = pNode->first_node("attackrange");
-    std::cout << pNode->value() << std::endl;
     return atoi(pNode->value());
 }
 
@@ -59,7 +57,6 @@ int MonsterParser::getAttackCooldown()
     rapidxml::xml_node<> *pRoot = doc.first_node();
     rapidxml::xml_node<> *pNode = pRoot->first_node("attack");
     pNode = pNode->first_node("attackcooldown");
-    std::cout << pNode->value() << std::endl;
     return atoi(pNode->value());
 }
 

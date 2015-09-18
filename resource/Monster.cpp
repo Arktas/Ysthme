@@ -1,17 +1,20 @@
 #include "Monster.h"
 
-Monster::Monster(ItemManager* itemManager, Data* dataContainer,std::string textureFile,int XTextureBegin,int YTextureBegin,int XSpriteSize,int YSpriteSize,int x,int y,float agroradius,int life,int attackRange,int nbSprite,int nbSpriteAnim,float* ORIGIN_DIFF_X_DYNAMIC,float* ORIGIN_DIFF_Y_DYNAMIC) : Character::Character(dataContainer,textureFile,XTextureBegin,YTextureBegin,XSpriteSize,YSpriteSize,x,y,life,nbSprite,nbSpriteAnim,ORIGIN_DIFF_X_DYNAMIC,ORIGIN_DIFF_Y_DYNAMIC)
+Monster::Monster(int monsterId,ItemManager* itemManager, Data* dataContainer,std::string textureFile,int XTextureBegin,int YTextureBegin,int XSpriteSize,int YSpriteSize,int x,int y,float agroradius,int life,int attackRange,int nbSprite,int nbSpriteAnim,float* ORIGIN_DIFF_X_DYNAMIC,float* ORIGIN_DIFF_Y_DYNAMIC) : Character::Character(dataContainer,textureFile,XTextureBegin,YTextureBegin,XSpriteSize,YSpriteSize,x,y,life,nbSprite,nbSpriteAnim,ORIGIN_DIFF_X_DYNAMIC,ORIGIN_DIFF_Y_DYNAMIC)
 {
-    this->monsterParser = new MonsterParser();
-    this->monsterParser->parse("data/properties/zombie.xml");
     //Chargement des paramètres
-    std::cout << "Chargements des parametres" << std::endl;
-    this->life = monsterParser->getLife();
-    this-> AgroRadius = monsterParser->getAgroRange();
-    ///////////////////////////
-    this->attackRange = monsterParser->getAttackRange();
+    std::stringstream ss_mid;
+    ss_mid << monsterId;
+
+
+    this->life = dataContainer->getInfo(ss_mid.str())->getLife();
+    this->lifeMax = dataContainer->getInfo(ss_mid.str())->getLife();
+    this-> AgroRadius = dataContainer->getInfo(ss_mid.str())->getAgroRange();
+    this->attackRange = dataContainer->getInfo(ss_mid.str())->getAttackRange();
     this->canAttack = false;
-    this->attackCooldown = monsterParser->getAttackCooldown();
+    this->attackCooldown = dataContainer->getInfo(ss_mid.str())->getAttackCooldown();
+
+
     this->clock = new Clock();
     this->clock->start();
     this->moove = false;
@@ -21,6 +24,7 @@ Monster::Monster(ItemManager* itemManager, Data* dataContainer,std::string textu
     delay = 0;
     spriteIndex = DOWN;
     this->itemManager = itemManager;
+    ///////////////////////////
 }
 
 void Monster::doRotation(int angle)
@@ -55,10 +59,10 @@ void Monster::moving(float x,float y)
     indexAnim = indexAnimWalk;
     X += x;
     Y += y;
-    Xmin = X;
-    Ymin = Y;
-    Xmax =X+Xsize;
-    Ymax =Y+Ysize;
+    Xmin = X-Xsize/2+30;
+    Ymin = Y-Ysize/2+40;
+    Xmax = X+Xsize/2-30;
+    Ymax = Y+Ysize/2;
     delay++;
     if(delay>5)
     {
@@ -75,16 +79,29 @@ Monster::~Monster()
 {
 }
 
-bool Monster::hit(int x,int y,int damage)
+bool Monster::hitbox(int Xmin_test,int Xmax_test,int Ymin_test,int Ymax_test)
 {
-    float spellMonsterDistance = sqrt(pow((x - X),2.0) + pow((y-Y),2.0));
-    if(spellMonsterDistance<50)
-    {
+     if((Xmin>=Xmin_test && Xmin<=Xmax_test) || (Xmax>=Xmin_test && Xmax<=Xmax_test) || (Xmin_test>=Xmin && Xmin_test<=Xmax) || (Xmax_test>=Xmin && Xmax_test<=Xmax))
+     {
+        if((Ymin>=Ymin_test && Ymin<=Ymax_test) || (Ymax>=Ymin_test && Ymax<=Ymax_test) || (Ymin_test>=Ymin && Ymin_test<=Ymax) || (Ymax_test>=Ymin && Ymax_test<=Ymax))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+     }
+     else
+     {
+         return false;
+     }
+}
+
+void Monster::hit(int damage)
+{
         life-=damage;
         get_hit = true;
-        return true;
-    }
-    else{return false;}
 }
 
 bool Monster::alive()
@@ -95,9 +112,7 @@ bool Monster::alive()
     }
     else
     {
-        float rand_x = X;
-        float rand_y = Y;
-        itemManager->addItem("bourse_or",rand_x,rand_y);
+        this->drop();
         return false;
     }
 }
@@ -138,5 +153,26 @@ void Monster::agroChange(int pX,int pY)
 
 void Monster::setMonsterPosition()
 {
+}
+
+void Monster::drop()
+{
+    float rand_x = X;
+    float rand_y = Y;
+    // DROP
+    srand (time(NULL));
+    int item = rand() % 4;
+    switch(item)
+    {
+        case 1:
+            itemManager->addItem("bourse_or",rand_x,rand_y);
+        break;
+        case 2:
+            itemManager->addItem("potion_mana",rand_x,rand_y);
+        break;
+        case 3:
+            itemManager->addItem("potion_vie",rand_x,rand_y);
+        break;
+    }
 }
 

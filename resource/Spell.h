@@ -10,6 +10,8 @@ class Spell
         float moveX;
         float moveY;
         float X,Y;
+        int Xmin, Xmax, Ymin, Ymax;
+        int Xsize,Ysize;
         int delay;
         int damage;
         int speed;
@@ -32,6 +34,10 @@ class Spell
         float getSpellY(){return Y+(*ORIGIN_DIFF_Y_DYNAMIC);};
         float getSpellRealX(){return X;};
         float getSpellRealY(){return Y;};
+        int getXmin(){return Xmin;};
+        int getYmin(){return Ymin;};
+        int getXmax(){return Xmax;};
+        int getYmax(){return Ymax;};
         int getDamage(){return damage;};
         int getSource(){return source;};
         int getRange(){return range;};

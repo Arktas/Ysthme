@@ -16,13 +16,14 @@ class Monster : public Character
         bool canAttack;
         bool get_hit;
         int attackCooldown;
+        int lifeMax;
         Clock *clock;
         bool moove;
         ItemManager* itemManager;
         MonsterParser* monsterParser;
     public:
         //constructor and destructor
-        Monster(ItemManager* itemManager,Data* dataContainer,std::string textureFile,int XTextureBegin,int YTextureBegin,int XSpriteSize,int YSpriteSize,int x,int y,float agroradius,int life,int attackRange,int nbSprite,int nbSpriteAnim,float* ORIGIN_DIFF_X_DYNAMIC,float* ORIGIN_DIFF_Y_DYNAMIC);
+        Monster(int monsterId,ItemManager* itemManager,Data* dataContainer,std::string textureFile,int XTextureBegin,int YTextureBegin,int XSpriteSize,int YSpriteSize,int x,int y,float agroradius,int life,int attackRange,int nbSprite,int nbSpriteAnim,float* ORIGIN_DIFF_X_DYNAMIC,float* ORIGIN_DIFF_Y_DYNAMIC);
         ~Monster();
 
         //moving functions
@@ -36,10 +37,12 @@ class Monster : public Character
         void agroChange(int pX,int pY);
         bool getAgro(){return agro;};
         bool getMoove(){return moove;};
-        bool hit(int x,int y,int damage);
+        bool hitbox(int Xmin_test,int Xmax_test,int Ymin_test,int Ymax_test);
+        void hit(int damage);
         bool alive();
         void idle(){indexAnim = 6;};
         void cast(){indexAnim = 9;};
+        void drop();
         //getters and setters
         int getMonsterRotation(){return rotation;/*spriteTab[spriteIndex].getRotation();*/};
         float getMonsterX(){return (*ORIGIN_DIFF_X_DYNAMIC)+X;};
@@ -47,6 +50,7 @@ class Monster : public Character
         float getMonsterRealX(){return X;};
         float getMonsterRealY(){return Y;};
         int getLife(){return life;};
+        int getMaxLife(){return lifeMax;};
         bool getCanAttack(){return canAttack;};
         void setMonsterPosition();
 };

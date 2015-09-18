@@ -28,6 +28,10 @@ class Character{
         ~Character();
         int getSpriteIndex(){return spriteIndex;};
         int getIndexAnim(){return indexAnim;};
+        int getXmin(){return Xmin;};
+        int getYmin(){return Ymin;};
+        int getXmax(){return Xmax;};
+        int getYmax(){return Ymax;};
 
 
 };

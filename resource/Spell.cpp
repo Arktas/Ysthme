@@ -12,6 +12,12 @@ Spell::Spell(Data *dataContainer,int nbSprite,std::string textureFile,int XTextu
     this->ORIGIN_DIFF_Y_DYNAMIC = ORIGIN_DIFF_Y_DYNAMIC;
     X = bX-(*ORIGIN_DIFF_X_DYNAMIC);
     Y = bY-(*ORIGIN_DIFF_Y_DYNAMIC);
+    Xmin = X-(XSpriteSize/2-3);
+    Ymin = Y-(YSpriteSize/2-8);
+    Xmax = X+(XSpriteSize/2-3);
+    Ymax = Y+(YSpriteSize/2-8);
+    Xsize = XSpriteSize;
+    Ysize = YSpriteSize;
     this->damage = damage;
     this->source = source;
     this->speed = speed;
@@ -36,6 +42,10 @@ void Spell::moving()
     }
     X+= moveX*speed;
     Y+= moveY*speed;
+    Xmin = X-(Xsize/2-3);
+    Ymin = Y-(Ysize/2-8);
+    Xmax = X+(Xsize/2-3);
+    Ymax = Y+(Ysize/2-8);
     range -= round(sqrt(pow((moveX*speed),2)+pow((moveY*speed),2)));
-    //std::cout << moveX <<" : "<<moveY << std::endl;
+    //std::cout << Xmax <<" : "<<Ymax << " | " << Xmin <<" : "<<Ymin << std::endl;
 }

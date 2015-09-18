@@ -3,7 +3,7 @@
 EnvironementManager::EnvironementManager(Data *dataContainer,Player* player,float* ORIGIN_DIFF_X_DYNAMIC,float* ORIGIN_DIFF_Y_DYNAMIC)
 {
     this->dataContainer = dataContainer;
-    land = new Ground(this->dataContainer,1,"grass",5,5,80,80,ORIGIN_DIFF_X_DYNAMIC,ORIGIN_DIFF_Y_DYNAMIC);
+    land = new Ground(this->dataContainer,1,"grass",32,32,32,32,ORIGIN_DIFF_X_DYNAMIC,ORIGIN_DIFF_Y_DYNAMIC);
     this->ORIGIN_DIFF_X_DYNAMIC = ORIGIN_DIFF_X_DYNAMIC;
     this->ORIGIN_DIFF_Y_DYNAMIC = ORIGIN_DIFF_Y_DYNAMIC;
     this->player = player;
@@ -18,10 +18,10 @@ EnvironementManager::~EnvironementManager()
 void EnvironementManager::checkEvent(sf::Event& event,sf::RenderWindow* window)
 {
     float* tile_position;
-    int x_max = (land->getOriginX()-(round((player->getPlayerRealX()-(XMAX/2))/80)))+2;
-    int x_min = (land->getOriginX()-(round((player->getPlayerRealX()+(XMAX/2))/80)))-2;
-    int y_max = (land->getOriginY()-(round((player->getPlayerRealY()-(YMAX/2))/80)))+2;
-    int y_min = (land->getOriginY()-(round((player->getPlayerRealY()+(YMAX/2))/80)))-2;
+    int x_max = (land->getOriginX()-(round((player->getPlayerRealX()-(XMAX/2))/32)))+2;
+    int x_min = (land->getOriginX()-(round((player->getPlayerRealX()+(XMAX/2))/32)))-2;
+    int y_max = (land->getOriginY()-(round((player->getPlayerRealY()-(YMAX/2))/32)))+2;
+    int y_min = (land->getOriginY()-(round((player->getPlayerRealY()+(YMAX/2))/32)))-2;
     if(x_min<0)
         x_min = 0;
     if(x_min>MAP_SIZE_X)

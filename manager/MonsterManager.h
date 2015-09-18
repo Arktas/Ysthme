@@ -18,8 +18,9 @@ class MonsterManager
         std::list<Monster*> *monsterList;
         MonsterPrinter* monsterPrinter;
         MonsterInterface* monsterInterface;
+        Hitbox* _INST_hitbox;
     public:
-        MonsterManager(Data* dataContainer,Player* player, std::list<Monster*> *monsterlist,float* ORIGIN_DIFF_X_DYNAMIC,float* ORIGIN_DIFF_Y_DYNAMIC);
+        MonsterManager(Hitbox* _INST_hitbox, Data* dataContainer,Player* player, std::list<Monster*> *monsterlist,float* ORIGIN_DIFF_X_DYNAMIC,float* ORIGIN_DIFF_Y_DYNAMIC);
         ~MonsterManager();
         void checkEvent(sf::Event& event,sf::RenderWindow* window);
         int rotation(int mX,int mY,int pX,int pY);

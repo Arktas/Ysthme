@@ -11,7 +11,7 @@ ItemPrinter::ItemPrinter(Data* dataContainer,std::string textureFile,int XTextur
         sf::Sprite temp;
         temp.setTexture(itemTexture);
         temp.setTextureRect(sf::IntRect((0+i*XSpriteSize),0,XSpriteSize,YSpriteSize));
-        temp.setOrigin(32,32);
+        temp.setOrigin(XSpriteSize/2,YSpriteSize/2);
         itemMap[nameTab[i].c_str()] = temp;
     }
 }

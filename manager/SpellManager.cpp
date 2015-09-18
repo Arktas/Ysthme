@@ -1,23 +1,24 @@
 #include "SpellManager.h"
 
-SpellManager::SpellManager(Player* player,std::list<Monster*> *monsterlist,bool* spell,Data *dataContainer,float* ORIGIN_DIFF_X_DYNAMIC,float* ORIGIN_DIFF_Y_DYNAMIC)
+SpellManager::SpellManager(Hitbox* _INST_hitbox, Player* player,std::list<Monster*> *monsterlist,_MANAGER_Flags *flags,Data *dataContainer,float* ORIGIN_DIFF_X_DYNAMIC,float* ORIGIN_DIFF_Y_DYNAMIC)
 {
-    this->spell = spell;
+    this->flags = flags;
     this->player = player;
     this->monsterList = monsterlist;
     this->dataContainer = dataContainer;
     this->ORIGIN_DIFF_X_DYNAMIC = ORIGIN_DIFF_X_DYNAMIC;
     this->ORIGIN_DIFF_Y_DYNAMIC = ORIGIN_DIFF_Y_DYNAMIC;
     this->spellPrinter = new SpellPrinter(dataContainer,"fireball",0,0,40,48,8);
+    this->_INST_hitbox = _INST_hitbox;
 }
 SpellManager::~SpellManager()
 {
 }
 void SpellManager::CheckEvent(sf::Event& event,sf::RenderWindow* window)
 {
-    if(event.type == sf::Event::MouseButtonPressed)
+    if(event.type == sf::Event::MouseButtonPressed && !this->flags->interfaceON)
     {
-        if(*spell)
+        if(this->flags->spell)
         {
             if (event.mouseButton.button == sf::Mouse::Left)
             {
@@ -25,16 +26,16 @@ void SpellManager::CheckEvent(sf::Event& event,sf::RenderWindow* window)
                 float mY = (sin(player->getPlayerRotation()* PI / 180.0)/5);
                 spellList.push_back(new Spell(dataContainer,8,"fireball",0,0,40,48,mX,mY,player->getPlayerX(),player->getPlayerY(),player->getPlayerRotation(),1,PLAYER_SPELL,SPELL_SPEED,700,ORIGIN_DIFF_X_DYNAMIC,ORIGIN_DIFF_Y_DYNAMIC));
             }
-            *spell = false;
+            this->flags->spell = false;
         }
     }
-    if(event.type == sf::Event::MouseButtonReleased)
+    if(event.type == sf::Event::MouseButtonReleased && !this->flags->interfaceON)
     {
         if (event.mouseButton.button == sf::Mouse::Left)
         {
-            if(!(*spell))
+            if(!(this->flags->spell))
             {
-                *spell = true;
+                this->flags->spell = true;
             }
         }
     }
@@ -54,6 +55,7 @@ void SpellManager::CheckEvent(sf::Event& event,sf::RenderWindow* window)
         for(it=spellList.begin();it!=spellList.end();it++)
         {
             bool touch = false;
+            //tester ici la hitbox
             (*it)->moving();
             switch((*it)->getSource())
             {
@@ -63,8 +65,9 @@ void SpellManager::CheckEvent(sf::Event& event,sf::RenderWindow* window)
                     std::list<Monster*>::iterator monster;
                     for(monster=monsterList->begin();monster!=monsterList->end();monster++)
                     {
-                        if((*monster)->hit((*it)->getSpellRealX(),(*it)->getSpellRealY(),(*it)->getDamage()))
+                        if((*monster)->hitbox((*it)->getXmin(),(*it)->getXmax(),(*it)->getYmin(),(*it)->getYmax()))
                         {
+                            (*monster)->hit((*it)->getDamage());
                             std::list<Spell*>::iterator iterase = it;
                             it--;
                             delete((*iterase));
@@ -75,8 +78,9 @@ void SpellManager::CheckEvent(sf::Event& event,sf::RenderWindow* window)
                 }
                 break;
                 case MONSTER_SPELL:
-                if(player->hit((*it)->getSpellRealX(),(*it)->getSpellRealY(),(*it)->getDamage()))
+                if(player->hitbox((*it)->getXmin(),(*it)->getXmax(),(*it)->getYmin(),(*it)->getYmax()))
                 {
+                    player->hit((*it)->getDamage());
                     std::list<Spell*>::iterator iterase = it;
                     it--;
                     delete((*iterase));
@@ -97,6 +101,14 @@ void SpellManager::CheckEvent(sf::Event& event,sf::RenderWindow* window)
             {
                 if((*it)!=NULL)
                 {
+                    if(SHOW_HITBOX)
+                    {
+                        sf::RectangleShape hitbox(sf::Vector2f(((*it)->getXmax()-(*it)->getXmin()),((*it)->getYmax()-(*it)->getYmin())));
+                        hitbox.setFillColor(sf::Color(250,0,0));
+                        hitbox.setOrigin(((*it)->getXmax()-(*it)->getXmin())/2,((*it)->getYmax()-(*it)->getYmin())/2);
+                        hitbox.setPosition((*it)->getSpellX(),(*it)->getSpellY());
+                        window->draw(hitbox);
+                    }
                     window->draw(spellPrinter->getSpellSprite((*it)));
                 }
             }

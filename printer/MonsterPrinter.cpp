@@ -12,7 +12,7 @@ MonsterPrinter::MonsterPrinter(Data* dataContainer,std::string textureFile,int X
             sf::Sprite temp;
             temp.setTexture(texture);
             temp.setTextureRect(sf::IntRect((XTextureBegin+j*XSpriteSize), (YTextureBegin+i*YSpriteSize), XSpriteSize, YSpriteSize));
-            temp.setOrigin(45,70);
+            temp.setOrigin(XSpriteSize/2,YSpriteSize/2);
             temp.setRotation(0);
             spriteTab[(i*nbSpriteAnim)+j] = temp;
         }

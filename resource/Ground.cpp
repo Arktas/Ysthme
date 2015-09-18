@@ -39,7 +39,7 @@ sf::Sprite Ground::display(int X,int Y)
     {
         case GRASS:
             sf::Sprite temp = map_ressources[GRASS];
-            temp.setPosition(sf::Vector2f(((X-origin_x)*80)+round(*ORIGIN_DIFF_X_DYNAMIC),(Y-origin_y)*80+round(*ORIGIN_DIFF_Y_DYNAMIC)));
+            temp.setPosition(sf::Vector2f(((X-origin_x)*32)+round(*ORIGIN_DIFF_X_DYNAMIC),(Y-origin_y)*32+round(*ORIGIN_DIFF_Y_DYNAMIC)));
             return temp;
         break;
     }

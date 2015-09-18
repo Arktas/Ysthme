@@ -2,17 +2,24 @@
 
 MainManager::MainManager()
 {
-    //move flag
-    left = false;
-    right = false;
-    top = false;
-    down = false;
-    dirTop = false;
-    dirDown = false;
-    dirRight = false;
-    dirLeft = false;
-    mousePressed = false;
-    spell = true;
+    //init flag
+    flags.left = false;
+    flags.right = false;
+    flags.top = false;
+    flags.down = false;
+    flags.dirTop = false;
+    flags.dirDown = false;
+    flags.dirRight = false;
+    flags.dirLeft = false;
+    flags.mousePressed = false;
+    flags.interfaceON = false;
+    flags.spell = true;
+    flags.inventoryShowed = false;
+    flags.drop = false;
+    flags.updateInventoryInterface=false;
+    flags.moovingItem = false;
+
+    //
     dataContainer = new Data();
     window = new sf::RenderWindow(sf::VideoMode(XMAX, YMAX), "Ysthme"/*,sf::Style::Fullscreen*/);
     sf::Image icon;
@@ -24,6 +31,8 @@ MainManager::MainManager()
     this->ORIGIN_DIFF_Y_DYNAMIC = ORIGIN_DIFF_Y;
     X=0.0;
     Y=0.0;
+
+    _INST_hitbox = new Hitbox();
 
 }
 
@@ -49,12 +58,11 @@ void MainManager::load()
     window->draw(loadTxt);
     window->display();
 
-
    dataContainer->load("test.xml");
 
-   Inventory* inventory = new Inventory();
+   inventory = new Inventory();
    player = new Player(dataContainer,"player",0,0,96,110,0,0,100,8,10,&ORIGIN_DIFF_X_DYNAMIC,&ORIGIN_DIFF_Y_DYNAMIC);
-   itemManager = new ItemManager(&ORIGIN_DIFF_X_DYNAMIC,&ORIGIN_DIFF_Y_DYNAMIC,dataContainer,player,inventory);
+   itemManager = new ItemManager(_INST_hitbox,&ORIGIN_DIFF_X_DYNAMIC,&ORIGIN_DIFF_Y_DYNAMIC,dataContainer,&itemList,player,inventory,&flags);
    for(int i=0;i<NB_MONSTER;i++)
    {
        //Monsters load text
@@ -71,39 +79,56 @@ void MainManager::load()
         window->draw(loadTxt);
         loadTxt.setPosition(5,60);
         if(loading<20)
+        {
             loadTxt.setString("     Structuration moléculaire...");
+        }
         else if(loading<40)
-            loadTxt.setString("     Création du squelette...");
+        {
+            loadTxt.setString("     Assemblage des squelette...");
+        }
         else if(loading<60)
-            loadTxt.setString("     Couverture musculaire...");
+        {
+            loadTxt.setString("     Stimulation musculaire...");
+        }
         else if(loading<80)
+        {
             loadTxt.setString("     Pigmentation...");
+        }
         else if(loading<100)
-            loadTxt.setString("     Démarrage de l'intelligence...");
+        {
+            loadTxt.setString("     Initialisation de l'intelligence...");
+        }
         window->draw(loadTxt);
         window->display();
         window->clear(sf::Color(0,0,0));
         //Monster load text
 
-       float rand_x = ((rand() % MAP_SIZE_X) - (MAP_SIZE_X/2))*80;
-       float rand_y = ((rand() % MAP_SIZE_Y) - (MAP_SIZE_Y/2))*80;
+       float rand_x = ((rand() % MAP_SIZE_X/2) - (rand() % MAP_SIZE_X/2))*32; //generate a random X
+   /*    while(rand_x>100 || rand_x<-100)
+       {
+           rand_x = ((rand() % MAP_SIZE_X/2) - (rand() % MAP_SIZE_X/2))*32;
+       }*/
+       float rand_y = ((rand() % MAP_SIZE_Y/2) - (rand() % MAP_SIZE_Y/2))*32; //generate a random Y
+      /* while(rand_y>100 || rand_y<-100)
+       {
+           rand_y = ((rand() % MAP_SIZE_Y/2) - (rand() % MAP_SIZE_Y/2))*32;
+       }*/
        //std::cout << rand_x <<" | "<< rand_y <<std::endl;
-       monsterList.push_back(new Monster(itemManager,dataContainer,"zombie",0,0,96,110,rand_x,rand_y,600.0,10,400,8,10,&ORIGIN_DIFF_X_DYNAMIC,&ORIGIN_DIFF_Y_DYNAMIC));
+       monsterList.push_back(new Monster(1,itemManager,dataContainer,"zombie",0,0,96,110,rand_x,rand_y,600.0,10,400,8,10,&ORIGIN_DIFF_X_DYNAMIC,&ORIGIN_DIFF_Y_DYNAMIC));
    }
 
 
 
 
-    playerManager = new PlayerManager(dataContainer,player,&left,&right,&top,&down,&dirTop,&dirDown,&dirRight,&dirLeft,&mousePressed,&spell,&ORIGIN_DIFF_X_DYNAMIC,&ORIGIN_DIFF_Y_DYNAMIC);
-    monsterManager = new MonsterManager(dataContainer,player,&monsterList,&ORIGIN_DIFF_X_DYNAMIC,&ORIGIN_DIFF_Y_DYNAMIC);
-    spellManager = new SpellManager(player,&monsterList,&spell,dataContainer,&ORIGIN_DIFF_X_DYNAMIC,&ORIGIN_DIFF_Y_DYNAMIC);
-    uiManager = new UIManager(&ORIGIN_DIFF_X_DYNAMIC,&ORIGIN_DIFF_Y_DYNAMIC);
+    playerManager = new PlayerManager(_INST_hitbox, dataContainer,&monsterList,player,&flags,&ORIGIN_DIFF_X_DYNAMIC,&ORIGIN_DIFF_Y_DYNAMIC);
+    monsterManager = new MonsterManager(_INST_hitbox, dataContainer,player,&monsterList,&ORIGIN_DIFF_X_DYNAMIC,&ORIGIN_DIFF_Y_DYNAMIC);
+    spellManager = new SpellManager(_INST_hitbox, player,&monsterList,&flags,dataContainer,&ORIGIN_DIFF_X_DYNAMIC,&ORIGIN_DIFF_Y_DYNAMIC);
+    uiManager = new UIManager(dataContainer,&itemList,inventory,&monsterList,player,&flags,&ORIGIN_DIFF_X_DYNAMIC,&ORIGIN_DIFF_Y_DYNAMIC);
 
     window->clear(sf::Color(0,0,0));
     loadTxt.setString("Chargement du monde...");
     window->draw(loadTxt);
     window->display();
-
     environementManager = new EnvironementManager(dataContainer,player,&ORIGIN_DIFF_X_DYNAMIC,&ORIGIN_DIFF_Y_DYNAMIC);
 }
 
@@ -117,7 +142,6 @@ void MainManager::CheckEvent()
     fps.setCharacterSize(20);
     fps.setStyle(sf::Text::Bold);
     fps.setPosition(5,5);
-
 
     this->clock->start();
     while (window->isOpen())
@@ -142,6 +166,7 @@ void MainManager::CheckEvent()
             std::stringstream fps_ss;
             fps_ss << realFps;
             fps.setString(fps_ss.str());
+            fps.setPosition(XMAX-25,0);
             window->draw(fps);
             window->display();
           // std::cout << this->clock->difftime() << std::endl;

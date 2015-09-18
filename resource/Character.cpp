@@ -8,10 +8,10 @@ Character::Character(Data* dataContainer,std::string textureFile,int XTextureBeg
     spriteIndex = 0;
     X = x;
     Y = y;
-    Xmin = x;
-    Ymin = y;
-    Xmax = x+XSpriteSize;
-    Ymax = y+YSpriteSize;
+    Xmin = x-XSpriteSize/2+30;
+    Ymin = y-YSpriteSize/2+40;
+    Xmax = x+XSpriteSize/2-30;
+    Ymax = y+YSpriteSize/2;
     Xsize=XSpriteSize;
     Ysize=YSpriteSize;
     this->ORIGIN_DIFF_X_DYNAMIC=ORIGIN_DIFF_X_DYNAMIC;

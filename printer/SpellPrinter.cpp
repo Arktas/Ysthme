@@ -11,7 +11,7 @@ SpellPrinter::SpellPrinter(Data* dataContainer,std::string textureFile,int XText
         sf::Sprite temp;
         temp.setTexture(texture);
         temp.setTextureRect(sf::IntRect((0+i*XSpriteSize), 0, XSpriteSize, YSpriteSize));
-        temp.setOrigin(30,80);
+        temp.setOrigin(XSpriteSize/2,YSpriteSize/2);
         spriteTab[i] = temp;
     }
     this->nbSprite = nbSprite;

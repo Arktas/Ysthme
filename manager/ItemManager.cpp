@@ -1,12 +1,15 @@
 #include "ItemManager.h"
 
-ItemManager::ItemManager(float* ORIGIN_DIFF_X_DYNAMIC,float* ORIGIN_DIFF_Y_DYNAMIC,Data* dataContainer,Player* player,Inventory* inventory)
+ItemManager::ItemManager(Hitbox* _INST_hitbox, float* ORIGIN_DIFF_X_DYNAMIC,float* ORIGIN_DIFF_Y_DYNAMIC,Data* dataContainer,std::list<Item*> *itemList,Player* player,Inventory* inventory, _MANAGER_Flags *flags)
 {
+    this->itemList = itemList;
     this->player = player;
     this->inventory = inventory;
     this->ORIGIN_DIFF_X_DYNAMIC = ORIGIN_DIFF_X_DYNAMIC;
     this->ORIGIN_DIFF_Y_DYNAMIC = ORIGIN_DIFF_Y_DYNAMIC;
     this->itemPrinter = new ItemPrinter(dataContainer,"item",0,0,64,64,3);
+    this->_INST_hitbox = _INST_hitbox;
+    this->flags = flags;
 
 }
 
@@ -17,34 +20,46 @@ ItemManager::~ItemManager()
 
 void ItemManager::checkEvent(sf::Event& event,sf::RenderWindow* window)
 {
-    std::list<Item*> itemListTemp;
 
-    while(!itemList.empty())
+    /////////    MAJ des item dans l'inventaire et sur la map ///////////////////////////
+    std::list<Item*>::iterator it;
+
+     for(it=itemList->begin();it!=itemList->end();it++)
     {
-        Item* itemTemp = itemList.back();
-        //std::cout << "plaxer Y : "<< player->getPlayerRealY() << " compare to " << ((-(itemTemp->getItemRealY())-2)) << " | " << ((-(itemTemp->getItemRealY()))+2) << std::endl;
-        if(player->getPlayerRealX()>((-(itemTemp->getItemRealX())-32)) && player->getPlayerRealX()<((-(itemTemp->getItemRealX())+32)) && player->getPlayerRealY()>((-(itemTemp->getItemRealY())-32)) && player->getPlayerRealY()<((-(itemTemp->getItemRealY()))+32))
+        if(player->hitbox((*it)->getXmin(),(*it)->getXmax(),(*it)->getYmin(),(*it)->getYmax()))
         {
-          //  if()
-           // {
-                inventory->addItemToInventory(itemTemp);
-           // }
+                inventory->addItemToInventory((*it));
+                std::list<Item*>::iterator iterase = it;
+                it--;
+                itemList->erase(iterase);
+                this->flags->drop = true;
         }
         else
         {
-           window->draw(itemPrinter->getItemSprite(itemTemp));
-           itemListTemp.push_front(itemTemp);
+            if(SHOW_HITBOX)
+            {
+                sf::RectangleShape hitbox(sf::Vector2f(((*it)->getXmax()-(*it)->getXmin()),((*it)->getYmax()-(*it)->getYmin())));
+                hitbox.setFillColor(sf::Color(250,0,0));
+                hitbox.setOrigin(((*it)->getXmax()-(*it)->getXmin())/2,((*it)->getYmax()-(*it)->getYmin())/2);
+                hitbox.setPosition((*it)->getItemX(),(*it)->getItemY());
+                window->draw(hitbox);
+            }
+           window->draw(itemPrinter->getItemSprite((*it)));
         }
-        itemList.pop_back();
     }
-    while(!itemListTemp.empty())
+    ///////////////////    FIN MAJ ////////////////////////////////
+
+    ///////////////////  Boucle sur les evenements ////////////////
+    if(event.type == sf::Event::KeyPressed && event.key.code==sf::Keyboard::I) // affichage du menu d'inventaire
     {
-        itemList.push_front(itemListTemp.back());
-         itemListTemp.pop_back();
+
     }
+
+
+
 }
 
 void ItemManager::addItem(std::string itemName,float x,float y)
 {
-    itemList.push_front(new Item(x,y,itemName,ORIGIN_DIFF_X_DYNAMIC,ORIGIN_DIFF_Y_DYNAMIC));
+    itemList->push_front(new Item(x,y,itemName,ORIGIN_DIFF_X_DYNAMIC,ORIGIN_DIFF_Y_DYNAMIC,64,64));
 }

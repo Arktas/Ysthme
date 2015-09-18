@@ -14,11 +14,13 @@ class ItemManager
         float* ORIGIN_DIFF_Y_DYNAMIC;
         Player *player;
         Inventory *inventory;
-        std::list<Item*> itemList;
+        std::list<Item*> *itemList;
         ItemPrinter *itemPrinter;
+        Hitbox* _INST_hitbox;
+        _MANAGER_Flags *flags;
 
     public:
-        ItemManager(float* ORIGIN_DIFF_X_DYNAMIC,float* ORIGIN_DIFF_Y_DYNAMIC,Data* dataContainer,Player* player,Inventory* inventory);
+        ItemManager(Hitbox* _INST_hitbox, float* ORIGIN_DIFF_X_DYNAMIC,float* ORIGIN_DIFF_Y_DYNAMIC,Data* dataContainer,std::list<Item*> *itemList,Player* player,Inventory* inventory, _MANAGER_Flags *flags);
         ~ItemManager();
         void checkEvent(sf::Event& event,sf::RenderWindow* window);
         void addItem(std::string itemName,float x,float y);

@@ -5,7 +5,6 @@
 #include "../resource/Player.h"
 #include "../resource/Monster.h"
 #include "../printer/PlayerPrinter.h"
-#include "../interface/PlayerInterface.h"
 #include "../resource/Data.h"
 
 class PlayerManager
@@ -13,22 +12,15 @@ class PlayerManager
     private:
         float* ORIGIN_DIFF_X_DYNAMIC;
         float* ORIGIN_DIFF_Y_DYNAMIC;
-        bool* left;
-        bool* right;
-        bool* top;
-        bool* down;
-        bool* dirTop;
-        bool* dirDown;
-        bool* dirRight;
-        bool* dirLeft;
-        bool* mousePressed;
-        bool* spell;
+        _MANAGER_Flags *flags;
         sf::Vector2i mousePosition;
         Player* player;
         PlayerPrinter* playerPrinter;
-        PlayerInterface *playerInterface;
+        Hitbox* _INST_hitbox;
+        std::list<Monster*> *monsterList;
+
     public:
-        PlayerManager(Data* dataContainer,Player* player,bool* left,bool* right,bool* top,bool* down,bool* dirTop,bool* dirDown,bool* dirRight,bool* dirLeft,bool* mousePressed,bool* spell,float* ORIGIN_DIFF_X_DYNAMIC,float* ORIGIN_DIFF_Y_DYNAMIC);
+        PlayerManager(Hitbox* _INST_hitbox, Data* dataContainer,std::list<Monster*> *monsterlist,Player* player,_MANAGER_Flags *flags,float* ORIGIN_DIFF_X_DYNAMIC,float* ORIGIN_DIFF_Y_DYNAMIC);
         ~PlayerManager();
         void checkEvent(sf::Event& event,sf::RenderWindow* window);
         int rotation(int mX,int mY,int pX,int pY);

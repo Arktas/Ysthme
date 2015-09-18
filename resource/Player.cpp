@@ -18,17 +18,8 @@ Player::~Player()
 void Player::doRotation(int angle)
 {
     rotation = angle;
-    /*for(int i=0;i<nbSprite;i++)
-    {
-        spriteTab[i].setRotation(angle);
-    }*/
 }
 
-
-/*void Player::changeTexture(int XTextureBegin,int YTextureBegin,int XSpriteSize,int YSpriteSize)
-{
-    spriteTab[0].setTextureRect(sf::IntRect(XTextureBegin, YTextureBegin, XSpriteSize, YSpriteSize));
-}*/
 
 void Player::cast()
 {
@@ -58,6 +49,10 @@ void Player::moving(float x,float y)
     Y += y;
     *ORIGIN_DIFF_X_DYNAMIC += x;
     *ORIGIN_DIFF_Y_DYNAMIC += y;
+    Xmin = -X-Xsize/2+30;
+    Ymin = -Y-Ysize/2+40;
+    Xmax = -X+Xsize/2-30;
+    Ymax = -Y+Ysize/2;
     delay++;
     if(delay>5)
     {
@@ -70,17 +65,35 @@ void Player::moving(float x,float y)
 
 }
 
-
-bool Player::hit(int x,int y,int damage)
+bool Player::hitbox(int Xmin_test,int Xmax_test,int Ymin_test,int Ymax_test)
 {
+     if((Xmin>=Xmin_test && Xmin<=Xmax_test) || (Xmax>=Xmin_test && Xmax<=Xmax_test) || (Xmin_test>=Xmin && Xmin_test<=Xmax) || (Xmax_test>=Xmin && Xmax_test<=Xmax))
+     {
+        if((Ymin>=Ymin_test && Ymin<=Ymax_test) || (Ymax>=Ymin_test && Ymax<=Ymax_test) || (Ymin_test>=Ymin && Ymin_test<=Ymax) || (Ymax_test>=Ymin && Ymax_test<=Ymax))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+     }
+     else
+     {
+         return false;
+     }
+}
 
-    float spellPlayerDistance = sqrt(pow((x+X),2.0) + pow((y+Y),2.0));
-    if((-x)>(X-Xsize/2) && (-x)<(X+Xsize/2) && (-y)>(Y-Ysize/2) && (-y)<(Y+Ysize/2))
+void Player::hit(int damage)
+{
+    if((life-damage)>0)
     {
-        life-=damage;
-        return true;
+         life-=damage;
     }
-    else{return false;}
+    else
+    {
+        life=0;
+    }
 }
 
 bool Player::alive()

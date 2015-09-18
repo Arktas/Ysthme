@@ -41,6 +41,9 @@
 			<Add option="-lsfml-window" />
 			<Add option="-lsfml-system" />
 		</Linker>
+		<Unit filename="Environment.h" />
+		<Unit filename="interface/BasicInterface.cpp" />
+		<Unit filename="interface/BasicInterface.h" />
 		<Unit filename="interface/MonsterInterface.cpp" />
 		<Unit filename="interface/MonsterInterface.h" />
 		<Unit filename="interface/PlayerInterface.cpp" />
@@ -62,6 +65,8 @@
 		<Unit filename="manager/UIManager.h" />
 		<Unit filename="misc/Clock.cpp" />
 		<Unit filename="misc/Clock.h" />
+		<Unit filename="misc/Hitbox.cpp" />
+		<Unit filename="misc/Hitbox.h" />
 		<Unit filename="misc/rapidxml/rapidxml.hpp" />
 		<Unit filename="misc/rapidxml/rapidxml_iterators.hpp" />
 		<Unit filename="misc/rapidxml/rapidxml_print.hpp" />
@@ -82,6 +87,7 @@
 		<Unit filename="resource/Character.h" />
 		<Unit filename="resource/Data.cpp" />
 		<Unit filename="resource/Data.h" />
+		<Unit filename="resource/Environment.cpp" />
 		<Unit filename="resource/Ground.cpp" />
 		<Unit filename="resource/Ground.h" />
 		<Unit filename="resource/Inventory.cpp" />

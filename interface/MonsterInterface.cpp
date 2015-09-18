@@ -14,10 +14,10 @@ MonsterInterface::~MonsterInterface()
 {
 }
 
-sf::Text MonsterInterface::display(int life,float X,float Y)
+sf::Text MonsterInterface::display(int lifeMax,int life,float X,float Y)
 {
     std::stringstream ss;
-    ss << "(" << life << "/10)";
+    ss << "(" << life << "/)" << lifeMax;
     monsterLife.setString(ss.str());
     monsterLife.setPosition(X,Y);
     return monsterLife;

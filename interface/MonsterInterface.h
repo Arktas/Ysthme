@@ -15,7 +15,7 @@ class MonsterInterface
         ~MonsterInterface();
 
         //UI display functions
-        sf::Text display(int life,float X,float Y);
+        sf::Text display(int lifeMax,int life,float X,float Y);
 };
 
 
