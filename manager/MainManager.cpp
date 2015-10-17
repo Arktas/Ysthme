@@ -123,7 +123,7 @@ void MainManager::load()
     playerManager = new PlayerManager(_INST_hitbox, dataContainer,&monsterList,player,&flags,&ORIGIN_DIFF_X_DYNAMIC,&ORIGIN_DIFF_Y_DYNAMIC);
     monsterManager = new MonsterManager(_INST_hitbox, dataContainer,player,&monsterList,&ORIGIN_DIFF_X_DYNAMIC,&ORIGIN_DIFF_Y_DYNAMIC);
     spellManager = new SpellManager(_INST_hitbox, player,&monsterList,&flags,dataContainer,&ORIGIN_DIFF_X_DYNAMIC,&ORIGIN_DIFF_Y_DYNAMIC);
-    uiManager = new UIManager(dataContainer,&itemList,inventory,&monsterList,player,&flags,&ORIGIN_DIFF_X_DYNAMIC,&ORIGIN_DIFF_Y_DYNAMIC);
+    uiManager = new UIManager(itemManager,dataContainer,&itemList,inventory,&monsterList,player,&flags,&ORIGIN_DIFF_X_DYNAMIC,&ORIGIN_DIFF_Y_DYNAMIC);
 
     window->clear(sf::Color(0,0,0));
     loadTxt.setString("Chargement du monde...");

@@ -29,13 +29,13 @@
 #define ORIGIN_DIFF_X round(XMAX/2)
 #define ORIGIN_DIFF_Y round(YMAX/2)
 //Ground states
-#define MAP_SIZE_X 100
-#define MAP_SIZE_Y 100
+#define MAP_SIZE_X 40
+#define MAP_SIZE_Y 40
 #define GRASS 0
 
 //biosphere parameters
-#define LIFE_MANAGEMENT_RANGE 5000
-#define NB_MONSTER 2
+#define LIFE_MANAGEMENT_RANGE round(std::max(XMAX/2,YMAX/2))+500
+#define NB_MONSTER 10
 //Spell parameters
 #define SPELL_SPEED 30
 
@@ -82,8 +82,10 @@
 #define STACK_NUMBER_DECAL_L 45
 #define STACK_NUMBER_DECAL_H 45
 
+#define H_BAR_1_SIZE 10
 
-#define SHOW_HITBOX 0 //debug hitbox
+
+#define SHOW_HITBOX 0 //debug hitboxz
 
 
 class MainManager;
@@ -104,6 +106,7 @@ typedef struct{
     bool dirLeft;
     bool spell;
     bool mousePressed;
+    bool mousePressed_R;
     bool interfaceON;
     bool inventoryShowed;
     bool updateInventoryInterface;

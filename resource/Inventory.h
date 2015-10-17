@@ -26,6 +26,7 @@ class Inventory
         ~Inventory();
 
         //context functions
+        void deleteItemByName(char* itemName);
         void addItemToInventory(Item* item);
         std::map<std::string,item_inventory>* getInventory();
         void setNewPositionOnInventory(int x,int y);

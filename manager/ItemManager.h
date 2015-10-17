@@ -24,5 +24,6 @@ class ItemManager
         ~ItemManager();
         void checkEvent(sf::Event& event,sf::RenderWindow* window);
         void addItem(std::string itemName,float x,float y);
+        void useItem(char* itemName);
 };
 #endif

@@ -17,6 +17,7 @@ Character::Character(Data* dataContainer,std::string textureFile,int XTextureBeg
     this->ORIGIN_DIFF_X_DYNAMIC=ORIGIN_DIFF_X_DYNAMIC;
     this->ORIGIN_DIFF_Y_DYNAMIC=ORIGIN_DIFF_Y_DYNAMIC;
     this->life = life;
+    this->lifeMax = life;
 }
 
 Character::~Character()

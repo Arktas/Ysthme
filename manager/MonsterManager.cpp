@@ -17,13 +17,14 @@ MonsterManager::~MonsterManager()
 
 void MonsterManager::checkEvent(sf::Event& event,sf::RenderWindow* window)
 {
+    //std::cout << "Player X"<<player->getPlayerRealX() << "Player Y"<<player->getPlayerRealY() <<std::endl;
     if(!(monsterList->empty()))
     {
         std::list<Monster*>::iterator it;
 
         for(it=monsterList->begin();it!=monsterList->end();it++)
         {
-            if((*it)->getMonsterRealX()>(-(player->getPlayerRealX()+LIFE_MANAGEMENT_RANGE)) && (*it)->getMonsterRealX()<(-(player->getPlayerRealX()-LIFE_MANAGEMENT_RANGE)) && (*it)->getMonsterRealY()>(-(player->getPlayerRealY()+LIFE_MANAGEMENT_RANGE)) && (*it)->getMonsterRealY()<(-(player->getPlayerRealY()-LIFE_MANAGEMENT_RANGE)))
+            if((*it)->getMonsterRealX()>((-(player->getPlayerRealX()+LIFE_MANAGEMENT_RANGE))-LIFE_MANAGEMENT_RANGE*2) && (*it)->getMonsterRealX()<((-(player->getPlayerRealX()-LIFE_MANAGEMENT_RANGE))+LIFE_MANAGEMENT_RANGE*2) && (*it)->getMonsterRealY()>((-(player->getPlayerRealY()+LIFE_MANAGEMENT_RANGE))-LIFE_MANAGEMENT_RANGE*2) && (*it)->getMonsterRealY()<((-(player->getPlayerRealY()-LIFE_MANAGEMENT_RANGE))+LIFE_MANAGEMENT_RANGE*2))
             {
                 if((*it)->getCanAttack())
                 {

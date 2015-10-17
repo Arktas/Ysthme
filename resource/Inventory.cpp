@@ -39,7 +39,7 @@ void Inventory::addItemToInventory(Item* item)
             {
                 if(inventoryUse[l+h*XsizeOfInventory] == 0)
                 {
-                     std::cout << "free slot found -> " << l << ":" << h << std::endl;
+                    // std::cout << "free slot found -> " << l << ":" << h << std::endl;
                     inventoryUse[l+h*XsizeOfInventory] = 1;
                     new_item.x = l;
                     new_item.y = h;
@@ -52,7 +52,15 @@ void Inventory::addItemToInventory(Item* item)
         }
         inventory[name] = new_item;
     }
-    std::cout << inventory[name].item->getName() << " add to your inventory stack number(" << (int)inventory[name].item_stack<<")" << " at " << (int)inventory[name].x << ":" << (int)inventory[name].y << std::endl;
+    //std::cout << inventory[name].item->getName() << " add to your inventory stack number(" << (int)inventory[name].item_stack<<")" << " at " << (int)inventory[name].x << ":" << (int)inventory[name].y << std::endl;
+}
+
+void Inventory::deleteItemByName(char* itemName)
+{
+    if(inventory.count(itemName))
+    {
+        inventory[itemName].item_stack--;
+    }
 }
 
 void Inventory::setNewPositionOnInventory(int x,int y)
@@ -62,7 +70,7 @@ void Inventory::setNewPositionOnInventory(int x,int y)
         inventoryUse[itemToMoove->y*XsizeOfInventory+itemToMoove->x] = 0;
         itemToMoove->x = x;
         itemToMoove->y = y;
-        inventoryUse[y*YsizeOfInventory+x] = 1;
+        inventoryUse[y*XsizeOfInventory+x] = 1;
     }
 }
 
@@ -75,4 +83,5 @@ void Inventory::saveThisItemSlot(item_inventory *itemToSave)
 {
     this->itemToMoove = itemToSave;
 }
+
 

@@ -8,11 +8,13 @@
 #include "../interface/PlayerInterface.h"
 #include "../interface/MonsterInterface.h"
 #include "../interface/BasicInterface.h"
+#include "ItemManager.h"
 #include "MainManager.h"
 
 class UIManager
 {
     private:
+        Item* _TEMP_item;
         float* ORIGIN_DIFF_X_DYNAMIC;
         float* ORIGIN_DIFF_Y_DYNAMIC;
         ItemPrinter *itemPrinter;
@@ -27,10 +29,10 @@ class UIManager
         _MANAGER_Flags *flags;
         std::list<sf::Sprite> inventoryInterfaceSpriteSave;
         std::list<sf::Text> inventoryInterfaceTextSave;
-
+        ItemManager *itemManager;
 
     public:
-        UIManager(Data* dataContainer,std::list<Item*> *itemList,Inventory *inventory,std::list<Monster*> *monsterList,Player* player,_MANAGER_Flags *flags,float* ORIGIN_DIFF_X_DYNAMIC,float *ORIGIN_DIFF_Y_DYNAMIC);
+        UIManager(ItemManager* itemManager,Data* dataContainer,std::list<Item*> *itemList,Inventory *inventory,std::list<Monster*> *monsterList,Player* player,_MANAGER_Flags *flags,float* ORIGIN_DIFF_X_DYNAMIC,float *ORIGIN_DIFF_Y_DYNAMIC);
         ~UIManager();
         void checkEvent(sf::Event& event,sf::RenderWindow* window,MainManager* mainManager);
         void showInventory(sf::RenderWindow* window);

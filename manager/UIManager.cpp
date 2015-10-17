@@ -1,7 +1,7 @@
 #include "UIManager.h"
 
 
-UIManager::UIManager(Data* dataContainer,std::list<Item*> *itemList,Inventory *inventory,std::list<Monster*> *monsterList,Player* player,_MANAGER_Flags *flags,float* ORIGIN_DIFF_X_DYNAMIC,float* ORIGIN_DIFF_Y_DYNAMIC)
+UIManager::UIManager(ItemManager* itemManager,Data* dataContainer,std::list<Item*> *itemList,Inventory *inventory,std::list<Monster*> *monsterList,Player* player,_MANAGER_Flags *flags,float* ORIGIN_DIFF_X_DYNAMIC,float* ORIGIN_DIFF_Y_DYNAMIC)
 {
     this->dataContainer = dataContainer;
     this->player = player;
@@ -14,6 +14,7 @@ UIManager::UIManager(Data* dataContainer,std::list<Item*> *itemList,Inventory *i
     this->monsterList = monsterList;
     this->flags = flags;
     this->itemPrinter = new ItemPrinter(dataContainer,"item",0,0,64,64,3);
+    this->itemManager = itemManager;
 }
 UIManager::~UIManager()
 {
@@ -85,6 +86,8 @@ void UIManager::checkEvent(sf::Event& event,sf::RenderWindow* window,MainManager
                             {
                                     if(it->second.x == l && it->second.y == h)
                                     {
+                                        it->second.item->setPosition(mouse_position.x,mouse_position.y);
+                                        _TEMP_item = new Item(mouse_position.x,mouse_position.y,it->second.item->getName(),ORIGIN_DIFF_X_DYNAMIC,ORIGIN_DIFF_Y_DYNAMIC,64,64);//it->second.item;
                                         inventory->saveThisItemSlot(&(it->second));
                                         this->flags->moovingItem = true;
                                     }
@@ -94,8 +97,52 @@ void UIManager::checkEvent(sf::Event& event,sf::RenderWindow* window,MainManager
                 }
         }
     }
+    if(event.type == sf::Event::MouseButtonPressed && this->flags->interfaceON)
+    {
+        if (event.mouseButton.button == sf::Mouse::Right && !this->flags->mousePressed_R)
+        {
+            this->flags->mousePressed_R = true;
+                mouse_position = sf::Mouse::getPosition(*window);
+                for(int l=0;l<INVENTORY_L;l++)
+                {
+                    for(int h=0;h<INVENTORY_H;h++)
+                    {
+                        int Xmin = (((XMAX-INVENTORY_SLOT_SIZE*INVENTORY_L)/2)+INVENTORY_SLOT_SIZE*l);
+                        int Xmax = (Xmin+INVENTORY_SLOT_SIZE);
+                        int Ymin = (((YMAX-INVENTORY_SLOT_SIZE*INVENTORY_H)/2)+INVENTORY_SLOT_SIZE*h);
+                        int Ymax = (Ymin + INVENTORY_SLOT_SIZE);
+                        if(mouse_position.x>Xmin && mouse_position.x<Xmax && mouse_position.y>Ymin && mouse_position.y<Ymax) // on verifie si la sourie est sur un slot de l'inventaire
+                        {
+                            std::map<std::string,item_inventory>* inventoryMap = inventory->getInventory();
+                            std::map<std::string,item_inventory>::iterator it;
+                            for(it=inventoryMap->begin();it!=inventoryMap->end();it++)
+                            {
+                                    if(it->second.x == l && it->second.y == h)
+                                    {
+                                        char* tempName = it->second.item->getName();
+                                        it++;
+                                        itemManager->useItem(tempName);
+                                        inventory->deleteItemByName(tempName);
+
+                                    }
+                            }
+                        }
+                    }
+                }
+        }
+    }
+    if(this->flags->mousePressed && this->flags->inventoryShowed)
+    {
+        mouse_position = sf::Mouse::getPosition(*window);
+        _TEMP_item->setPosition(mouse_position.x,mouse_position.y);
+        window->draw(itemPrinter->getItemSprite(_TEMP_item));
+    }
     if(event.type == sf::Event::MouseButtonReleased && this->flags->interfaceON)
     {
+        if (event.mouseButton.button == sf::Mouse::Right)
+        {
+            this->flags->mousePressed_R = false;
+        }
         if (event.mouseButton.button == sf::Mouse::Left)
         {
             this->flags->mousePressed = false;
@@ -169,8 +216,11 @@ void UIManager::showInventory(sf::RenderWindow* window)
     std::map<std::string,item_inventory>::iterator it;
     for(it=inventoryMap->begin();it!=inventoryMap->end();it++)
     {
-        it->second.item->setPosition((((XMAX-INVENTORY_SLOT_SIZE*INVENTORY_L)/2)+INVENTORY_SLOT_SIZE*it->second.x),(((YMAX-INVENTORY_SLOT_SIZE*INVENTORY_H)/2)+INVENTORY_SLOT_SIZE*it->second.y));
-        inventoryInterfaceSpriteSave.push_back(itemPrinter->getItemSprite(it->second.item));
-        inventoryInterfaceTextSave.push_back(basicInterface->displayNbItem((((XMAX-INVENTORY_SLOT_SIZE*INVENTORY_L)/2)+INVENTORY_SLOT_SIZE*it->second.x+STACK_NUMBER_DECAL_L),(((YMAX-INVENTORY_SLOT_SIZE*INVENTORY_H)/2)+INVENTORY_SLOT_SIZE*it->second.y+STACK_NUMBER_DECAL_H),it->second.item_stack));
+        if(it->second.item_stack>0)
+        {
+            it->second.item->setPosition((((XMAX-INVENTORY_SLOT_SIZE*INVENTORY_L)/2)+INVENTORY_SLOT_SIZE*it->second.x),(((YMAX-INVENTORY_SLOT_SIZE*INVENTORY_H)/2)+INVENTORY_SLOT_SIZE*it->second.y));
+            inventoryInterfaceSpriteSave.push_back(itemPrinter->getItemSprite(it->second.item));
+            inventoryInterfaceTextSave.push_back(basicInterface->displayNbItem((((XMAX-INVENTORY_SLOT_SIZE*INVENTORY_L)/2)+INVENTORY_SLOT_SIZE*it->second.x+STACK_NUMBER_DECAL_L),(((YMAX-INVENTORY_SLOT_SIZE*INVENTORY_H)/2)+INVENTORY_SLOT_SIZE*it->second.y+STACK_NUMBER_DECAL_H),it->second.item_stack));
+        }
     }
 }

@@ -38,6 +38,7 @@ class Player : public Character
         float getPlayerRealX(){return X;};
         float getPlayerRealY(){return Y;};
         int getLife(){return life;};
+        int addLife(int lp){if(life<(lifeMax-lp)){life+=lp;}else{life = lifeMax;}};
         void setDirection(int direction){spriteIndex = direction;};
         void setState(int newState){state = newState;};
 

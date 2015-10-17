@@ -63,3 +63,11 @@ void ItemManager::addItem(std::string itemName,float x,float y)
 {
     itemList->push_front(new Item(x,y,itemName,ORIGIN_DIFF_X_DYNAMIC,ORIGIN_DIFF_Y_DYNAMIC,64,64));
 }
+
+void ItemManager::useItem(char* itemName)
+{
+    if(!strcmp(itemName,"potion_vie"))
+    {
+        player->addLife(10);
+    }
+}

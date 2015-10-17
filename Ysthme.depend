@@ -2,7 +2,7 @@
 1379269286 source:f:\workspace c\ysthme\main.cpp
 	<SFML/Graphics.hpp>
 
-1442599731 source:d:\workspace c\ysthme\main.cpp
+1442603331 source:d:\workspace c\ysthme\main.cpp
 	"manager/MainManager.h"
 
 1400168154 d:\workspace c\ysthme\util.h
@@ -131,14 +131,14 @@
 1400168050 source:d:\workspace c\ysthme\playermanager.cpp
 	"PlayerManager.h"
 
-1438167336 source:d:\workspace c\ysthme\interface\monsterinterface.cpp
+1438170936 source:d:\workspace c\ysthme\interface\monsterinterface.cpp
 	"MonsterInterface.h"
 
-1438167548 d:\workspace c\ysthme\interface\monsterinterface.h
+1438171148 d:\workspace c\ysthme\interface\monsterinterface.h
 	"../misc/util.h"
 	"../resource/Monster.h"
 
-1442601632 d:\workspace c\ysthme\misc\util.h
+1444595297 d:\workspace c\ysthme\misc\util.h
 	<SFML/Window.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/System.hpp>
@@ -153,7 +153,7 @@
 	"Hitbox.h"
 	"../resource/Data.h"
 
-1399987337 d:\workspace c\ysthme\misc\clock.h
+1399990937 d:\workspace c\ysthme\misc\clock.h
 	"windows.h"
 
 1426754269 d:\workspace c\ysthme\misc\xmlparser.h
@@ -166,16 +166,16 @@
 	<string.h>
 	"variables.h"
 
-1242171978 d:\workspace c\ysthme\misc\rapidxml\rapidxml.hpp
+1242175578 d:\workspace c\ysthme\misc\rapidxml\rapidxml.hpp
 	<cstdlib>
 	<cassert>
 	<new>
 	<exception>
 
-1442601649 source:d:\workspace c\ysthme\manager\mainmanager.cpp
+1444495617 source:d:\workspace c\ysthme\manager\mainmanager.cpp
 	"MainManager.h"
 
-1442595015 d:\workspace c\ysthme\manager\mainmanager.h
+1442598615 d:\workspace c\ysthme\manager\mainmanager.h
 	"../misc/util.h"
 	"MonsterManager.h"
 	"SpellManager.h"
@@ -184,7 +184,7 @@
 	"EnvironementManager.h"
 	"../resource/Data.h"
 
-1441884624 d:\workspace c\ysthme\manager\monstermanager.h
+1441888224 d:\workspace c\ysthme\manager\monstermanager.h
 	"../misc/util.h"
 	"../resource/Monster.h"
 	"../resource/Player.h"
@@ -193,39 +193,39 @@
 	"../resource/Data.h"
 	"ItemManager.h"
 
-1442597588 d:\workspace c\ysthme\resource\monster.h
+1442601188 d:\workspace c\ysthme\resource\monster.h
 	"../misc/util.h"
 	"../manager/ItemManager.h"
 	"../parser/MonsterParser.h"
 	"Character.h"
 
-1442597592 d:\workspace c\ysthme\resource\character.h
+1444496097 d:\workspace c\ysthme\resource\character.h
 	"../misc/util.h"
 	"Data.h"
 
-1442597590 d:\workspace c\ysthme\resource\player.h
+1444496213 d:\workspace c\ysthme\resource\player.h
 	"../misc/util.h"
 	"Character.h"
 	"Item.h"
 
-1442570832 d:\workspace c\ysthme\manager\spellmanager.h
+1442574432 d:\workspace c\ysthme\manager\spellmanager.h
 	"../misc/util.h"
 	"../resource/Spell.h"
 	"../resource/Player.h"
 	"../resource/Monster.h"
 	"../printer/SpellPrinter.h"
 
-1442479114 d:\workspace c\ysthme\resource\spell.h
+1443217585 d:\workspace c\ysthme\resource\spell.h
 	"../misc/util.h"
 
-1442570682 d:\workspace c\ysthme\manager\playermanager.h
+1442574282 d:\workspace c\ysthme\manager\playermanager.h
 	"../misc/util.h"
 	"../resource/Player.h"
 	"../resource/Monster.h"
 	"../printer/PlayerPrinter.h"
 	"../resource/Data.h"
 
-1442601403 d:\workspace c\ysthme\manager\uimanager.h
+1444495543 d:\workspace c\ysthme\manager\uimanager.h
 	"../misc/util.h"
 	"../resource/Data.h"
 	"../resource/Player.h"
@@ -233,85 +233,86 @@
 	"../interface/PlayerInterface.h"
 	"../interface/MonsterInterface.h"
 	"../interface/BasicInterface.h"
+	"ItemManager.h"
 	"MainManager.h"
 
-1442576163 source:d:\workspace c\ysthme\manager\monstermanager.cpp
+1443185199 source:d:\workspace c\ysthme\manager\monstermanager.cpp
 	"MonsterManager.h"
 
-1442573892 source:d:\workspace c\ysthme\manager\playermanager.cpp
+1443184844 source:d:\workspace c\ysthme\manager\playermanager.cpp
 	"PlayerManager.h"
 
-1442573523 source:d:\workspace c\ysthme\manager\spellmanager.cpp
+1442577123 source:d:\workspace c\ysthme\manager\spellmanager.cpp
 	"SpellManager.h"
 
-1442602500 source:d:\workspace c\ysthme\manager\uimanager.cpp
+1444496788 source:d:\workspace c\ysthme\manager\uimanager.cpp
 	"UIManager.h"
 
-1413651241 source:d:\workspace c\ysthme\misc\clock.cpp
+1413654841 source:d:\workspace c\ysthme\misc\clock.cpp
 	"Clock.h"
 
 1426759487 source:d:\workspace c\ysthme\misc\xmlparser.cpp
 	"XMLparser.h"
 
-1442597594 source:d:\workspace c\ysthme\resource\character.cpp
+1444496067 source:d:\workspace c\ysthme\resource\character.cpp
 	"Character.h"
 
-1442598208 source:d:\workspace c\ysthme\resource\monster.cpp
+1443184802 source:d:\workspace c\ysthme\resource\monster.cpp
 	"Monster.h"
 
-1442597599 source:d:\workspace c\ysthme\resource\player.cpp
+1443184821 source:d:\workspace c\ysthme\resource\player.cpp
 	"Player.h"
 
-1442497837 source:d:\workspace c\ysthme\resource\spell.cpp
+1442501437 source:d:\workspace c\ysthme\resource\spell.cpp
 	"Spell.h"
 
-1442598241 source:d:\workspace c\ysthme\resource\data.cpp
+1442608034 source:d:\workspace c\ysthme\resource\data.cpp
 	"Data.h"
 
-1437919804 d:\workspace c\ysthme\resource\data.h
+1437923404 d:\workspace c\ysthme\resource\data.h
 	"../misc/util.h"
 	"../parser/MonsterParser.h"
 
-1432227366 source:d:\workspace c\ysthme\resource\ground.cpp
+1432230966 source:d:\workspace c\ysthme\resource\ground.cpp
 	"Ground.h"
 
-1432227179 source:d:\workspace c\ysthme\manager\environementmanager.cpp
+1432230779 source:d:\workspace c\ysthme\manager\environementmanager.cpp
 	"EnvironementManager.h"
 
-1413905099 d:\workspace c\ysthme\resource\ground.h
+1413908699 d:\workspace c\ysthme\resource\ground.h
 	"../misc/util.h"
 
-1413890679 d:\workspace c\ysthme\manager\environementmanager.h
+1413894279 d:\workspace c\ysthme\manager\environementmanager.h
 	"../misc/util.h"
 	"../resource/Ground.h"
 	"../resource/Player.h"
 
-1442600425 source:d:\workspace c\ysthme\resource\item.cpp
+1442604025 source:d:\workspace c\ysthme\resource\item.cpp
 	"Item.h"
 
-1442580779 d:\workspace c\ysthme\resource\item.h
+1442584379 d:\workspace c\ysthme\resource\item.h
 	"../misc/util.h"
 
-1442575110 d:\workspace c\ysthme\manager\itemmanager.h
+1444495748 d:\workspace c\ysthme\manager\itemmanager.h
 	"../misc/util.h"
 	"../resource/Item.h"
 	"../resource/Player.h"
 	"../resource/Inventory.h"
 	"../printer/ItemPrinter.h"
 
-1442575164 source:d:\workspace c\ysthme\manager\itemmanager.cpp
+1444495731 source:d:\workspace c\ysthme\manager\itemmanager.cpp
 	"ItemManager.h"
 
-1437929679 source:d:\workspace c\ysthme\interface\playerinterface.cpp
+1443217419 source:d:\workspace c\ysthme\interface\playerinterface.cpp
 	"PlayerInterface.h"
 
-1441887680 source:d:\workspace c\ysthme\printer\monsterprinter.cpp
+1441891280 source:d:\workspace c\ysthme\printer\monsterprinter.cpp
 	"MonsterPrinter.h"
 
-1441887677 source:d:\workspace c\ysthme\printer\spellprinter.cpp
+1441891277 source:d:\workspace c\ysthme\printer\spellprinter.cpp
 	"SpellPrinter.h"
 
-1426952823 source:d:\workspace c\ysthme\printer\playerprinter.cpp
+1443183502 source:d:\workspace c\ysthme\printer\playerprinter.cpp
 	"PlayerPrinter.h"
 
 1426676139 d:\workspace c\ysthme\printer\playerprinter.h
@@ -329,7 +330,7 @@
 	"../resource/Data.h"
 	"../resource/Spell.h"
 
-1442602183 d:\workspace c\ysthme\resource\inventory.h
+1443218587 d:\workspace c\ysthme\resource\inventory.h
 	"../misc/util.h"
 	"Item.h"
 
@@ -338,15 +339,17 @@
 	"../resource/Item.h"
 	"../resource/Data.h"
 
-1442602175 source:d:\workspace c\ysthme\resource\inventory.cpp
+1444496834 source:d:\workspace c\ysthme\resource\inventory.cpp
 	"Inventory.h"
 
-1441887681 source:d:\workspace c\ysthme\printer\itemprinter.cpp
+1441891281 source:d:\workspace c\ysthme\printer\itemprinter.cpp
 	"ItemPrinter.h"
 
-1437929688 d:\workspace c\ysthme\interface\playerinterface.h
+1443217520 d:\workspace c\ysthme\interface\playerinterface.h
 	"../misc/util.h"
 	"../resource/Data.h"
+	"../resource/Spell.h"
+	"../resource/Item.h"
 
 1427460278 d:\workspace c\ysthme\parser\monsterparser.h
 	"../misc/rapidxml/rapidxml.hpp"
@@ -358,30 +361,30 @@
 	<list>
 	<string.h>
 
-1442570655 d:\workspace c\ysthme\misc\variables.h
+1442574255 d:\workspace c\ysthme\misc\variables.h
 
-1437920450 source:d:\workspace c\ysthme\parser\monsterparser.cpp
+1437924050 source:d:\workspace c\ysthme\parser\monsterparser.cpp
 	"MonsterParser.h"
 
 1426879664 source:d:\workspace c\ysthme\ressources.rc
 
-1442482019 source:d:\workspace c\ysthme\misc\hitbox.cpp
+1442485619 source:d:\workspace c\ysthme\misc\hitbox.cpp
 	"Hitbox.h"
 
-1442476777 d:\workspace c\ysthme\misc\hitbox.h
+1442480377 d:\workspace c\ysthme\misc\hitbox.h
 	"util.h"
 
-1442498237 source:d:\workspace c\ysthme\resource\environment.cpp
+1442501837 source:d:\workspace c\ysthme\resource\environment.cpp
 	"Environment.h"
 
-1442498296 d:\workspace c\ysthme\resource\environment.h
+1442501896 d:\workspace c\ysthme\resource\environment.h
 	"../misc/util.h"
 
-1442566845 d:\workspace c\ysthme\interface\basicinterface.h
+1442570445 d:\workspace c\ysthme\interface\basicinterface.h
 	"../misc/util.h"
 	"../resource/Data.h"
 
-1442566856 source:d:\workspace c\ysthme\interface\basicinterface.cpp
+1442570456 source:d:\workspace c\ysthme\interface\basicinterface.cpp
 	"BasicInterface.h"
 
 1442566856 source:g:\ysthme\interface\basicinterface.cpp
@@ -634,7 +637,7 @@
 	"../misc/util.h"
 	"../resource/Data.h"
 
-1442601632 d:\workspace c\github\ysthme\misc\util.h
+1442606716 d:\workspace c\github\ysthme\misc\util.h
 	<SFML/Window.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/System.hpp>
@@ -869,4 +872,247 @@
 	"Spell.h"
 
 1426879664 source:d:\workspace c\github\ysthme\ressources.rc
+
+1442570456 source:e:\ysthme\interface\basicinterface.cpp
+	"BasicInterface.h"
+
+1442570445 e:\ysthme\interface\basicinterface.h
+	"../misc/util.h"
+	"../resource/Data.h"
+
+1442610316 e:\ysthme\misc\util.h
+	<SFML/Window.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/System.hpp>
+	<math.h>
+	<iostream>
+	<list>
+	<string.h>
+	<sstream>
+	<time.h>
+	<unistd.h>
+	"Clock.h"
+	"Hitbox.h"
+	"../resource/Data.h"
+
+1399990937 e:\ysthme\misc\clock.h
+	"windows.h"
+
+1442480377 e:\ysthme\misc\hitbox.h
+	"util.h"
+
+1437923404 e:\ysthme\resource\data.h
+	"../misc/util.h"
+	"../parser/MonsterParser.h"
+
+1427460278 e:\ysthme\parser\monsterparser.h
+	"../misc/rapidxml/rapidxml.hpp"
+	"../misc/variables.h"
+	<string>
+	<iostream>
+	<sstream>
+	<fstream>
+	<list>
+	<string.h>
+
+1242175578 e:\ysthme\misc\rapidxml\rapidxml.hpp
+	<cstdlib>
+	<cassert>
+	<new>
+	<exception>
+
+1442574255 e:\ysthme\misc\variables.h
+
+1438170936 source:e:\ysthme\interface\monsterinterface.cpp
+	"MonsterInterface.h"
+
+1438171148 e:\ysthme\interface\monsterinterface.h
+	"../misc/util.h"
+	"../resource/Monster.h"
+
+1442601188 e:\ysthme\resource\monster.h
+	"../misc/util.h"
+	"../manager/ItemManager.h"
+	"../parser/MonsterParser.h"
+	"Character.h"
+
+1442578710 e:\ysthme\manager\itemmanager.h
+	"../misc/util.h"
+	"../resource/Item.h"
+	"../resource/Player.h"
+	"../resource/Inventory.h"
+	"../printer/ItemPrinter.h"
+
+1442584379 e:\ysthme\resource\item.h
+	"../misc/util.h"
+
+1442601190 e:\ysthme\resource\player.h
+	"../misc/util.h"
+	"Character.h"
+	"Item.h"
+
+1442601192 e:\ysthme\resource\character.h
+	"../misc/util.h"
+	"Data.h"
+
+1442605783 e:\ysthme\resource\inventory.h
+	"../misc/util.h"
+	"Item.h"
+
+1426691481 e:\ysthme\printer\itemprinter.h
+	"../misc/util.h"
+	"../resource/Item.h"
+	"../resource/Data.h"
+
+1437933279 source:e:\ysthme\interface\playerinterface.cpp
+	"PlayerInterface.h"
+
+1437933288 e:\ysthme\interface\playerinterface.h
+	"../misc/util.h"
+	"../resource/Data.h"
+
+1442603331 source:e:\ysthme\main.cpp
+	"manager/MainManager.h"
+
+1442598615 e:\ysthme\manager\mainmanager.h
+	"../misc/util.h"
+	"MonsterManager.h"
+	"SpellManager.h"
+	"PlayerManager.h"
+	"UIManager.h"
+	"EnvironementManager.h"
+	"../resource/Data.h"
+
+1441888224 e:\ysthme\manager\monstermanager.h
+	"../misc/util.h"
+	"../resource/Monster.h"
+	"../resource/Player.h"
+	"../interface/MonsterInterface.h"
+	"../printer/MonsterPrinter.h"
+	"../resource/Data.h"
+	"ItemManager.h"
+
+1426677086 e:\ysthme\printer\monsterprinter.h
+	"../misc/util.h"
+	"../resource/Data.h"
+	"../resource/Monster.h"
+
+1442574432 e:\ysthme\manager\spellmanager.h
+	"../misc/util.h"
+	"../resource/Spell.h"
+	"../resource/Player.h"
+	"../resource/Monster.h"
+	"../printer/SpellPrinter.h"
+
+1442482714 e:\ysthme\resource\spell.h
+	"../misc/util.h"
+
+1426678803 e:\ysthme\printer\spellprinter.h
+	"../misc/util.h"
+	"../resource/Data.h"
+	"../resource/Spell.h"
+
+1442574282 e:\ysthme\manager\playermanager.h
+	"../misc/util.h"
+	"../resource/Player.h"
+	"../resource/Monster.h"
+	"../printer/PlayerPrinter.h"
+	"../resource/Data.h"
+
+1426676139 e:\ysthme\printer\playerprinter.h
+	"../misc/util.h"
+	"../resource/Data.h"
+	"../resource/Player.h"
+
+1442605003 e:\ysthme\manager\uimanager.h
+	"../misc/util.h"
+	"../resource/Data.h"
+	"../resource/Player.h"
+	"../resource/Inventory.h"
+	"../interface/PlayerInterface.h"
+	"../interface/MonsterInterface.h"
+	"../interface/BasicInterface.h"
+	"MainManager.h"
+
+1413894279 e:\ysthme\manager\environementmanager.h
+	"../misc/util.h"
+	"../resource/Ground.h"
+	"../resource/Player.h"
+
+1413908699 e:\ysthme\resource\ground.h
+	"../misc/util.h"
+
+1432230779 source:e:\ysthme\manager\environementmanager.cpp
+	"EnvironementManager.h"
+
+1442578764 source:e:\ysthme\manager\itemmanager.cpp
+	"ItemManager.h"
+
+1442605249 source:e:\ysthme\manager\mainmanager.cpp
+	"MainManager.h"
+
+1442579763 source:e:\ysthme\manager\monstermanager.cpp
+	"MonsterManager.h"
+
+1442577492 source:e:\ysthme\manager\playermanager.cpp
+	"PlayerManager.h"
+
+1442577123 source:e:\ysthme\manager\spellmanager.cpp
+	"SpellManager.h"
+
+1442606100 source:e:\ysthme\manager\uimanager.cpp
+	"UIManager.h"
+
+1413654841 source:e:\ysthme\misc\clock.cpp
+	"Clock.h"
+
+1442485619 source:e:\ysthme\misc\hitbox.cpp
+	"Hitbox.h"
+
+1437924050 source:e:\ysthme\parser\monsterparser.cpp
+	"MonsterParser.h"
+
+1441891281 source:e:\ysthme\printer\itemprinter.cpp
+	"ItemPrinter.h"
+
+1441891280 source:e:\ysthme\printer\monsterprinter.cpp
+	"MonsterPrinter.h"
+
+1426952823 source:e:\ysthme\printer\playerprinter.cpp
+	"PlayerPrinter.h"
+
+1441891277 source:e:\ysthme\printer\spellprinter.cpp
+	"SpellPrinter.h"
+
+1442601194 source:e:\ysthme\resource\character.cpp
+	"Character.h"
+
+1442608034 source:e:\ysthme\resource\data.cpp
+	"Data.h"
+
+1442501837 source:e:\ysthme\resource\environment.cpp
+	"Environment.h"
+
+1442501896 e:\ysthme\resource\environment.h
+	"../misc/util.h"
+
+1432230966 source:e:\ysthme\resource\ground.cpp
+	"Ground.h"
+
+1442605775 source:e:\ysthme\resource\inventory.cpp
+	"Inventory.h"
+
+1442604025 source:e:\ysthme\resource\item.cpp
+	"Item.h"
+
+1442608048 source:e:\ysthme\resource\monster.cpp
+	"Monster.h"
+
+1442601199 source:e:\ysthme\resource\player.cpp
+	"Player.h"
+
+1442501437 source:e:\ysthme\resource\spell.cpp
+	"Spell.h"
+
+1426879664 source:e:\ysthme\ressources.rc
 

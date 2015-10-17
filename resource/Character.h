@@ -12,6 +12,7 @@ class Character{
         int Xsize,Ysize;
         int Xmin, Xmax, Ymin, Ymax;
         int life;
+        int lifeMax;
         int nbSprite;
         int indexAnim;
         int indexAnimWalk;
